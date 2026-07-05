@@ -1,0 +1,333 @@
+{
+  "info": {
+    "name": "TicketSpice API (Webconnex v2 Public)",
+    "description": "The TicketSpice programmable surface is the shared Webconnex v2 Public REST API. Base URL: https://api.webconnex.com/v2/public. Select the TicketSpice product with the product=ticketspice query parameter and authenticate with an apiKey request header (API key generated from the dashboard; access is gated to higher-tier plans). Endpoints are transcribed from the public Webconnex v2 reference (https://docs.webconnex.io/api/v2/).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      { "key": "key", "value": "apiKey", "type": "string" },
+      { "key": "value", "value": "{{apiKey}}", "type": "string" },
+      { "key": "in", "value": "header", "type": "string" }
+    ]
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "https://api.webconnex.com/v2/public", "type": "string" },
+    { "key": "apiKey", "value": "", "type": "string" },
+    { "key": "product", "value": "ticketspice", "type": "string" }
+  ],
+  "item": [
+    {
+      "name": "Health",
+      "item": [
+        {
+          "name": "Ping",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/ping", "host": ["{{baseUrl}}"], "path": ["ping"] },
+            "description": "Health check; verifies the API is reachable and the API key is valid."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Forms and Inventory",
+      "item": [
+        {
+          "name": "List forms",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/forms?product={{product}}", "host": ["{{baseUrl}}"], "path": ["forms"], "query": [{ "key": "product", "value": "{{product}}" }] },
+            "description": "List the ticketing forms (event pages) in the account."
+          }
+        },
+        {
+          "name": "View form",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/forms/:id?product={{product}}", "host": ["{{baseUrl}}"], "path": ["forms", ":id"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Retrieve a single form by id."
+          }
+        },
+        {
+          "name": "View inventory",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/forms/:formID/inventory?product={{product}}", "host": ["{{baseUrl}}"], "path": ["forms", ":formID", "inventory"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "formID", "value": "" }] },
+            "description": "Remaining ticket and product inventory for a form."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Orders and Registrants",
+      "item": [
+        {
+          "name": "Search orders",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/search/orders?product={{product}}", "host": ["{{baseUrl}}"], "path": ["search", "orders"], "query": [{ "key": "product", "value": "{{product}}" }, { "key": "limit", "value": "50", "disabled": true }, { "key": "startingAfter", "value": "", "disabled": true }] },
+            "description": "Search ticket orders."
+          }
+        },
+        {
+          "name": "View order",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/search/orders/:id?product={{product}}", "host": ["{{baseUrl}}"], "path": ["search", "orders", ":id"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Retrieve a single order by id."
+          }
+        },
+        {
+          "name": "Search registrants",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/search/registrants?product={{product}}", "host": ["{{baseUrl}}"], "path": ["search", "registrants"], "query": [{ "key": "product", "value": "{{product}}" }] },
+            "description": "Search registrants (ticket buyers/attendees)."
+          }
+        },
+        {
+          "name": "View registrant",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/search/registrants/:id?product={{product}}", "host": ["{{baseUrl}}"], "path": ["search", "registrants", ":id"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Retrieve a single registrant by id."
+          }
+        },
+        {
+          "name": "Check-in registrant",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"registrantId\": \"\"\n}" },
+            "url": { "raw": "{{baseUrl}}/registrant/check-in?product={{product}}", "host": ["{{baseUrl}}"], "path": ["registrant", "check-in"], "query": [{ "key": "product", "value": "{{product}}" }] },
+            "description": "Check a registrant in at the door."
+          }
+        },
+        {
+          "name": "Check-out registrant",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"registrantId\": \"\"\n}" },
+            "url": { "raw": "{{baseUrl}}/registrant/check-out?product={{product}}", "host": ["{{baseUrl}}"], "path": ["registrant", "check-out"], "query": [{ "key": "product", "value": "{{product}}" }] },
+            "description": "Check a registrant out."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tickets",
+      "item": [
+        {
+          "name": "Search tickets",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/search/tickets?product={{product}}", "host": ["{{baseUrl}}"], "path": ["search", "tickets"], "query": [{ "key": "product", "value": "{{product}}" }] },
+            "description": "Search individual issued tickets."
+          }
+        },
+        {
+          "name": "View ticket",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/search/tickets/:id?product={{product}}", "host": ["{{baseUrl}}"], "path": ["search", "tickets", ":id"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Retrieve a single ticket by id."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Transactions and Customers",
+      "item": [
+        {
+          "name": "Search transactions",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/search/transactions?product={{product}}", "host": ["{{baseUrl}}"], "path": ["search", "transactions"], "query": [{ "key": "product", "value": "{{product}}" }] },
+            "description": "Search financial transactions (payments, refunds)."
+          }
+        },
+        {
+          "name": "View transaction",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/search/transactions/:id?product={{product}}", "host": ["{{baseUrl}}"], "path": ["search", "transactions", ":id"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Retrieve a single transaction by id."
+          }
+        },
+        {
+          "name": "Search customers",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/search/customers?product={{product}}", "host": ["{{baseUrl}}"], "path": ["search", "customers"], "query": [{ "key": "product", "value": "{{product}}" }] },
+            "description": "Search customer records."
+          }
+        },
+        {
+          "name": "View customer",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/search/customers/:id?product={{product}}", "host": ["{{baseUrl}}"], "path": ["search", "customers", ":id"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Retrieve a single customer by id."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Coupons",
+      "item": [
+        {
+          "name": "List global coupons",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/coupons/global?product={{product}}", "host": ["{{baseUrl}}"], "path": ["coupons", "global"], "query": [{ "key": "product", "value": "{{product}}" }] },
+            "description": "List account-wide (global) coupons."
+          }
+        },
+        {
+          "name": "List form coupons",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/coupons/form/:formID?product={{product}}", "host": ["{{baseUrl}}"], "path": ["coupons", "form", ":formID"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "formID", "value": "" }] },
+            "description": "List coupons scoped to a form."
+          }
+        },
+        {
+          "name": "Create coupon",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"code\": \"SAVE10\",\n  \"formId\": \"\",\n  \"discountType\": \"percentage\",\n  \"discountValue\": 10,\n  \"active\": true\n}" },
+            "url": { "raw": "{{baseUrl}}/coupons?product={{product}}", "host": ["{{baseUrl}}"], "path": ["coupons"], "query": [{ "key": "product", "value": "{{product}}" }] },
+            "description": "Create a coupon."
+          }
+        },
+        {
+          "name": "View coupon",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/coupons/:couponID?product={{product}}", "host": ["{{baseUrl}}"], "path": ["coupons", ":couponID"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "couponID", "value": "" }] },
+            "description": "Retrieve a single coupon by id."
+          }
+        },
+        {
+          "name": "Update coupon",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"discountValue\": 15,\n  \"active\": true\n}" },
+            "url": { "raw": "{{baseUrl}}/coupons/:couponID?product={{product}}", "host": ["{{baseUrl}}"], "path": ["coupons", ":couponID"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "couponID", "value": "" }] },
+            "description": "Update a coupon."
+          }
+        },
+        {
+          "name": "Delete coupon",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/coupons/:couponID?product={{product}}", "host": ["{{baseUrl}}"], "path": ["coupons", ":couponID"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "couponID", "value": "" }] },
+            "description": "Delete a coupon."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Webhooks",
+      "item": [
+        {
+          "name": "List webhooks",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/webhooks?product={{product}}", "host": ["{{baseUrl}}"], "path": ["webhooks"], "query": [{ "key": "product", "value": "{{product}}" }] },
+            "description": "List webhook subscriptions."
+          }
+        },
+        {
+          "name": "Create webhook",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"name\": \"My Webhook\",\n  \"url\": \"https://example.com/hook\",\n  \"event\": \"registration.created\",\n  \"active\": true\n}" },
+            "url": { "raw": "{{baseUrl}}/webhooks?product={{product}}", "host": ["{{baseUrl}}"], "path": ["webhooks"], "query": [{ "key": "product", "value": "{{product}}" }] },
+            "description": "Create a webhook subscription."
+          }
+        },
+        {
+          "name": "View webhook",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/webhooks/:id?product={{product}}", "host": ["{{baseUrl}}"], "path": ["webhooks", ":id"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Retrieve a single webhook by id."
+          }
+        },
+        {
+          "name": "Update webhook",
+          "request": {
+            "method": "PUT",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"active\": false\n}" },
+            "url": { "raw": "{{baseUrl}}/webhooks/:id?product={{product}}", "host": ["{{baseUrl}}"], "path": ["webhooks", ":id"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Update a webhook subscription."
+          }
+        },
+        {
+          "name": "Delete webhook",
+          "request": {
+            "method": "DELETE",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/webhooks/:id?product={{product}}", "host": ["{{baseUrl}}"], "path": ["webhooks", ":id"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "id", "value": "" }] },
+            "description": "Delete a webhook subscription."
+          }
+        },
+        {
+          "name": "View webhook logs",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/webhooks/:id/logs?product={{product}}", "host": ["{{baseUrl}}"], "path": ["webhooks", ":id", "logs"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "id", "value": "" }] },
+            "description": "List delivery logs for a webhook."
+          }
+        },
+        {
+          "name": "View webhook log",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/webhooks/:webhookID/logs/:id?product={{product}}", "host": ["{{baseUrl}}"], "path": ["webhooks", ":webhookID", "logs", ":id"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "webhookID", "value": "" }, { "key": "id", "value": "" }] },
+            "description": "Retrieve a single webhook delivery log."
+          }
+        },
+        {
+          "name": "Resend webhook",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": { "raw": "{{baseUrl}}/webhooks/:webhookID/resend/:logID?product={{product}}", "host": ["{{baseUrl}}"], "path": ["webhooks", ":webhookID", "resend", ":logID"], "query": [{ "key": "product", "value": "{{product}}" }], "variable": [{ "key": "webhookID", "value": "" }, { "key": "logID", "value": "" }] },
+            "description": "Re-send a prior webhook delivery."
+          }
+        }
+      ]
+    }
+  ]
+}

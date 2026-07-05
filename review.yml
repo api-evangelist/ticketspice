@@ -1,0 +1,108 @@
+aid: ticketspice
+name: TicketSpice
+review:
+  question: Does TicketSpice expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-05'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. TicketSpice's programmable surface is the
+    shared Webconnex REST API (base https://api.webconnex.com/v2/public), which is
+    pure request/response REST over HTTPS. The only event-driven surface is
+    outbound webhooks - server-to-endpoint HTTP callbacks fired on events such as
+    new registration, subscription/deposit processed, form publish, inventory
+    thresholds, and coupon changes. There is no server-push transport (WebSocket
+    or SSE) on TicketSpice's own API to model, so no AsyncAPI document was created.
+findings:
+  summary: |
+    TicketSpice does not publish a documented public WebSocket API. TicketSpice is
+    an online event ticketing platform built by Webconnex. Its API is the shared
+    Webconnex REST API (base https://api.webconnex.com/v2/public), the same surface
+    behind RegFox, RedPodium, and GivingFuel; callers select the TicketSpice
+    product with a product=ticketspice parameter and authenticate with an apiKey
+    request header. The API is request/response REST over HTTPS - GET search and
+    view endpoints for orders, registrants, tickets, subscriptions, transactions,
+    customers, forms, and inventory, plus write operations for coupons, webhooks,
+    and registrant check-in/check-out. The only push mechanism is outbound
+    webhooks (HTTP callbacks), not a WebSocket. No realtime, bidirectional, or
+    streaming WebSocket (ws:// or wss://) endpoint is documented anywhere on the
+    Webconnex/TicketSpice API as of the review date.
+  accessModel: |
+    The Webconnex API is real and documented (docs.webconnex.io/api/v2), but access
+    is provisioned per account: an organizer generates an API key from the
+    dashboard, and API access is gated to higher-tier plans (RegFox documents this
+    as Premium/Professional; TicketSpice documents API access on Enterprise-tier
+    packages). Endpoints below are transcribed from the public reference and are
+    real, not modeled; a live account/key is required to exercise them.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://api.webconnex.com/v2/public
+      documented: true
+      note: Shared Webconnex API. TicketSpice is selected via product=ticketspice and an apiKey header.
+    - protocol: Webhook
+      scheme: https
+      documented: true
+      note: Outbound HTTP callbacks on events (new registration, subscription/deposit processed, form publish, inventory thresholds, coupon changes). Server-to-endpoint HTTP, not WebSocket.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in the Webconnex/TicketSpice API reference as of the review date.
+  endpointsConfirmedRest:
+    - GET    https://api.webconnex.com/v2/public/ping
+    - GET    https://api.webconnex.com/v2/public/forms
+    - GET    https://api.webconnex.com/v2/public/forms/{id}
+    - GET    https://api.webconnex.com/v2/public/forms/{formID}/inventory
+    - GET    https://api.webconnex.com/v2/public/search/orders
+    - GET    https://api.webconnex.com/v2/public/search/orders/{id}
+    - GET    https://api.webconnex.com/v2/public/search/registrants
+    - GET    https://api.webconnex.com/v2/public/search/registrants/{id}
+    - POST   https://api.webconnex.com/v2/public/registrant/check-in
+    - POST   https://api.webconnex.com/v2/public/registrant/check-out
+    - GET    https://api.webconnex.com/v2/public/search/tickets
+    - GET    https://api.webconnex.com/v2/public/search/tickets/{id}
+    - GET    https://api.webconnex.com/v2/public/search/subscriptions
+    - GET    https://api.webconnex.com/v2/public/search/subscriptions/{id}
+    - GET    https://api.webconnex.com/v2/public/search/transactions
+    - GET    https://api.webconnex.com/v2/public/search/transactions/{id}
+    - GET    https://api.webconnex.com/v2/public/search/customers
+    - GET    https://api.webconnex.com/v2/public/search/customers/{id}
+    - GET    https://api.webconnex.com/v2/public/coupons/global
+    - GET    https://api.webconnex.com/v2/public/coupons/form/{formID}
+    - POST   https://api.webconnex.com/v2/public/coupons
+    - GET    https://api.webconnex.com/v2/public/coupons/{couponID}
+    - PUT    https://api.webconnex.com/v2/public/coupons/{couponID}
+    - DELETE https://api.webconnex.com/v2/public/coupons/{couponID}
+    - GET    https://api.webconnex.com/v2/public/webhooks
+    - POST   https://api.webconnex.com/v2/public/webhooks
+    - GET    https://api.webconnex.com/v2/public/webhooks/{id}
+    - PUT    https://api.webconnex.com/v2/public/webhooks/{id}
+    - DELETE https://api.webconnex.com/v2/public/webhooks/{id}
+    - GET    https://api.webconnex.com/v2/public/webhooks/{id}/logs
+    - GET    https://api.webconnex.com/v2/public/webhooks/{webhookID}/logs/{id}
+    - POST   https://api.webconnex.com/v2/public/webhooks/{webhookID}/resend/{logID}
+sources:
+  - url: https://docs.webconnex.io/api/v2/
+    type: APIReference
+    note: Official Webconnex v2 API reference - base URL, apiKey auth, endpoints, rate limits, JSON response envelope.
+  - url: https://help.regfox.com/en/articles/2340089-rest-api
+    type: Documentation
+    note: Confirms the shared REST API, API-key auth, GET-oriented data retrieval, per-account burst/daily rate limits, and higher-tier plan gating.
+  - url: https://help.ticketspice.com/en/articles/2471509-webhooks
+    type: Documentation
+    note: TicketSpice webhook events and configuration; HTTP callbacks, no WebSocket.
+  - url: https://demo.regfox.com/api-request
+    type: Documentation
+    note: Webconnex API request page confirming apiKey usage and support contacts.
+  - url: https://github.com/webconnex
+    type: SourceCode
+    note: Webconnex GitHub org (no public API client/SDK for the ticketing API).
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. TicketSpice's own public API is the
+    request/response Webconnex REST API plus outbound webhooks (HTTP callbacks).
+    No AsyncAPI document was created because there is no server-push transport on
+    TicketSpice's own API to model.

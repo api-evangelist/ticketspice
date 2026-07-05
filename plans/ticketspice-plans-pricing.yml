@@ -1,0 +1,161 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: TicketSpice
+providerId: ticketspice
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Event Ticketing
+- Ticketing
+- Payments
+- Webconnex
+- Plans
+description: >-
+  TicketSpice does not sell API access as a metered product; instead it charges a
+  flat per-ticket fee for using the ticketing platform, and the Webconnex REST API
+  is a feature provisioned to accounts (with API access gated to higher-tier
+  plans). The dominant, grounded pricing is per ticket: 0.99 USD per paid ticket
+  (5 USD or more), 0.49 USD per paid ticket under 5 USD, 0.49 USD per ticket when
+  sold through the box office card reader, no fee for cash box-office sales, and
+  0.99 USD per free-event ticket (waived for organizers with prior paid-event
+  history). Card processing through built-in Webconnex Payments is 2.9 percent
+  plus 0.30 USD; using a custom processor adds a 1 percent platform fee on top of
+  that processor's own rates. There are no setup fees, monthly fees, or contracts
+  for the base ticketing service. Fees are deducted from organizer payouts by
+  default, or can be passed on to buyers.
+notes: >-
+  Per-ticket and processing rates are grounded in the TicketSpice pricing and fees
+  help article and pricing page as of the review date; verify current numbers
+  before relying on them. Premium features (SMS, drip campaigns, etc.) carry
+  separate per-unit and subscription costs (roughly 0.02 to 0.25 USD per unit plus
+  monthly fees) and are billed via a card on file, invoiced every 30 days. The
+  Webconnex API itself has no separate published per-call fee beyond the rate
+  limits.
+sources:
+- https://www.ticketspice.com/pricing
+- https://help.ticketspice.com/en/articles/8757593-ticketspice-pricing-and-fees
+- https://help.ticketspice.com/en/articles/9006400-receive-the-face-value-of-your-tickets
+- https://docs.webconnex.io/api/v2/
+plans:
+- id: ticketspice-per-ticket
+  name: TicketSpice Per-Ticket
+  type: usage
+  description: >-
+    Pay-as-you-go ticketing with no setup, monthly, or contract fees. Billed as a
+    flat fee per ticket sold, deducted from payouts (or optionally passed to
+    buyers). Includes fully customizable ticketing pages, weekly payouts, and
+    access to the Webconnex platform.
+  entries:
+  - label: Paid Ticket 5 USD or More
+    name: paid_ticket_standard
+    type: usage
+    metric: tickets
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 0.99 USD per paid ticket
+    userMultiplied: false
+  - label: Paid Ticket Under 5 USD
+    name: paid_ticket_low
+    type: usage
+    metric: tickets
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 0.49 USD per paid ticket
+    userMultiplied: false
+  - label: Box Office Card Ticket
+    name: box_office_card
+    type: usage
+    metric: tickets
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 0.49 USD per ticket
+    userMultiplied: false
+  - label: Box Office Cash Ticket
+    name: box_office_cash
+    type: usage
+    metric: tickets
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: no fee
+    userMultiplied: false
+  - label: Free Event Ticket
+    name: free_event_ticket
+    type: usage
+    metric: tickets
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 0.99 USD per ticket (waived with prior paid-event history)
+    userMultiplied: false
+  elements:
+  - name: Customizable Ticketing Pages
+  - name: Weekly Payouts
+  - name: Webhooks
+  - name: Box Office App
+- id: ticketspice-card-processing
+  name: Card Processing
+  type: usage
+  description: >-
+    Payment processing applied on top of the per-ticket fee.
+  entries:
+  - label: Webconnex Payments
+    name: webconnex_payments
+    type: usage
+    metric: transactions
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 2.9 percent plus 0.30 USD per transaction
+    userMultiplied: false
+  - label: Custom Payment Processor
+    name: custom_processor
+    type: usage
+    metric: transactions
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: 1 percent platform fee plus the processor's own fees
+    userMultiplied: false
+  elements:
+  - name: Weekly Payouts
+  - name: Pass Fees to Buyers Option
+- id: ticketspice-api-access
+  name: API and Integrations Access
+  type: enterprise
+  description: >-
+    Programmatic access to the shared Webconnex REST API (search/view orders,
+    registrants, tickets, transactions, customers, forms, inventory; manage
+    coupons and webhooks; registrant check-in/out). API keys are generated from
+    the dashboard, and API access is gated to higher-tier/Enterprise packages.
+    There is no separate published per-call price beyond the account rate limits.
+  entries:
+  - label: API Access
+    name: api_access
+    type: flat
+    metric: access
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: included with qualifying plan (contact TicketSpice)
+    userMultiplied: false
+  elements:
+  - name: Webconnex REST API
+  - name: Webhooks
+  - name: API Key Management
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

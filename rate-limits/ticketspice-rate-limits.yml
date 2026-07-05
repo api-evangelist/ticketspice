@@ -1,0 +1,66 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: TicketSpice
+providerId: ticketspice
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Event Ticketing
+- Ticketing
+- Webconnex
+- Rate Limiting
+- Quotas
+description: >-
+  The TicketSpice programmable surface is the shared Webconnex v2 Public REST API,
+  which publishes fixed numeric rate limits enforced per account (per API key).
+  There is a daily cap of 10,000 requests (reset at 00:00 UTC) and a burst cap of
+  900 requests per rolling 15-minute window. Search endpoints page results with a
+  startingAfter cursor and a limit parameter that defaults to 50 records per page.
+  Remaining capacity is reported in response headers, and requests over the limit
+  are rejected with an HTTP 429.
+notes: >-
+  Numeric limits are grounded in the Webconnex v2 reference and the Fivetran
+  connector documentation as of the review date. Some Webconnex product docs cite
+  a maximum page size of 250 records while the v2 reference examples show a default
+  of 50; treat 50 as the safe default and verify the maximum for your account.
+  Honor the X-Retry-After header on 429 responses and use exponential backoff.
+sources:
+- https://docs.webconnex.io/api/v2/
+- https://help.regfox.com/en/articles/2340089-rest-api
+- https://fivetran.com/docs/connectors/applications/webconnex
+responseCodes:
+  throttled: 429
+headers:
+  dailyRemaining: X-Daily-Remaining
+  burstRemaining: X-Burst-Remaining
+  retryAfter: X-Retry-After
+limits:
+- name: Daily Requests
+  scope: account
+  metric: requests
+  limit: 10000
+  timeFrame: day
+  notes: Resets at 00:00 UTC. Remaining reported via X-Daily-Remaining.
+- name: Burst Requests
+  scope: account
+  metric: requests
+  limit: 900
+  timeFrame: 15 minutes
+  notes: Rolling 15-minute window. Remaining reported via X-Burst-Remaining.
+- name: Search Page Size
+  scope: request
+  metric: records
+  limit: 50 default
+  notes: Controlled by the limit parameter; startingAfter provides cursor pagination. Some docs cite up to 250 max.
+policies:
+- name: Cursor Pagination
+  description: Search endpoints return pages ordered by id; pass startingAfter with the last id to fetch the next page until hasMore is false.
+- name: Backoff Strategy
+  description: On HTTP 429, honor the X-Retry-After header and apply exponential backoff with jitter.
+- name: Per-Key Enforcement
+  description: Limits are enforced per account API key, so parallel jobs sharing a key share the same daily and burst budget.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,200 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TicketSpice API (Webconnex v2 Public)",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "apikey": { "key": "apiKey", "value": "{{apiKey}}", "in": "header" }
+    }
+  },
+  "items": [
+    {
+      "info": { "name": "Health", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Ping", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/ping" },
+          "docs": "Health check; verifies the API is reachable and the API key is valid."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Forms and Inventory", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List forms", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/forms?product=ticketspice" },
+          "docs": "List the ticketing forms (event pages) in the account."
+        },
+        {
+          "info": { "name": "View form", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/forms/:id?product=ticketspice", "params": [{ "name": "id", "value": "", "type": "path", "description": "Form id." }] },
+          "docs": "Retrieve a single form by id."
+        },
+        {
+          "info": { "name": "View inventory", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/forms/:formID/inventory?product=ticketspice", "params": [{ "name": "formID", "value": "", "type": "path", "description": "Form id." }] },
+          "docs": "Remaining ticket and product inventory for a form."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Orders and Registrants", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search orders", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/search/orders?product=ticketspice" },
+          "docs": "Search ticket orders. Supports limit and startingAfter cursor pagination and date-range filters."
+        },
+        {
+          "info": { "name": "View order", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/search/orders/:id?product=ticketspice", "params": [{ "name": "id", "value": "", "type": "path", "description": "Order id." }] },
+          "docs": "Retrieve a single order by id."
+        },
+        {
+          "info": { "name": "Search registrants", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/search/registrants?product=ticketspice" },
+          "docs": "Search registrants (ticket buyers/attendees)."
+        },
+        {
+          "info": { "name": "View registrant", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/search/registrants/:id?product=ticketspice", "params": [{ "name": "id", "value": "", "type": "path", "description": "Registrant id." }] },
+          "docs": "Retrieve a single registrant by id."
+        },
+        {
+          "info": { "name": "Check-in registrant", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.webconnex.com/v2/public/registrant/check-in?product=ticketspice", "body": { "type": "json", "data": "{\"registrantId\":\"\"}" } },
+          "docs": "Check a registrant in at the door."
+        },
+        {
+          "info": { "name": "Check-out registrant", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.webconnex.com/v2/public/registrant/check-out?product=ticketspice", "body": { "type": "json", "data": "{\"registrantId\":\"\"}" } },
+          "docs": "Check a registrant out."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Tickets", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search tickets", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/search/tickets?product=ticketspice" },
+          "docs": "Search individual issued tickets."
+        },
+        {
+          "info": { "name": "View ticket", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/search/tickets/:id?product=ticketspice", "params": [{ "name": "id", "value": "", "type": "path", "description": "Ticket id." }] },
+          "docs": "Retrieve a single ticket by id."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Transactions and Customers", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "Search transactions", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/search/transactions?product=ticketspice" },
+          "docs": "Search financial transactions (payments, refunds)."
+        },
+        {
+          "info": { "name": "View transaction", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/search/transactions/:id?product=ticketspice", "params": [{ "name": "id", "value": "", "type": "path", "description": "Transaction id." }] },
+          "docs": "Retrieve a single transaction by id."
+        },
+        {
+          "info": { "name": "Search customers", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/search/customers?product=ticketspice" },
+          "docs": "Search customer records."
+        },
+        {
+          "info": { "name": "View customer", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/search/customers/:id?product=ticketspice", "params": [{ "name": "id", "value": "", "type": "path", "description": "Customer id." }] },
+          "docs": "Retrieve a single customer by id."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Coupons", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List global coupons", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/coupons/global?product=ticketspice" },
+          "docs": "List account-wide (global) coupons."
+        },
+        {
+          "info": { "name": "List form coupons", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/coupons/form/:formID?product=ticketspice", "params": [{ "name": "formID", "value": "", "type": "path", "description": "Form id." }] },
+          "docs": "List coupons scoped to a form."
+        },
+        {
+          "info": { "name": "Create coupon", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.webconnex.com/v2/public/coupons?product=ticketspice", "body": { "type": "json", "data": "{\"code\":\"SAVE10\",\"formId\":\"\",\"discountType\":\"percentage\",\"discountValue\":10,\"active\":true}" } },
+          "docs": "Create a coupon."
+        },
+        {
+          "info": { "name": "View coupon", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/coupons/:couponID?product=ticketspice", "params": [{ "name": "couponID", "value": "", "type": "path", "description": "Coupon id." }] },
+          "docs": "Retrieve a single coupon by id."
+        },
+        {
+          "info": { "name": "Update coupon", "type": "http" },
+          "http": { "method": "PUT", "url": "https://api.webconnex.com/v2/public/coupons/:couponID?product=ticketspice", "params": [{ "name": "couponID", "value": "", "type": "path", "description": "Coupon id." }], "body": { "type": "json", "data": "{\"discountValue\":15,\"active\":true}" } },
+          "docs": "Update a coupon."
+        },
+        {
+          "info": { "name": "Delete coupon", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://api.webconnex.com/v2/public/coupons/:couponID?product=ticketspice", "params": [{ "name": "couponID", "value": "", "type": "path", "description": "Coupon id." }] },
+          "docs": "Delete a coupon."
+        }
+      ]
+    },
+    {
+      "info": { "name": "Webhooks", "type": "folder" },
+      "items": [
+        {
+          "info": { "name": "List webhooks", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/webhooks?product=ticketspice" },
+          "docs": "List webhook subscriptions."
+        },
+        {
+          "info": { "name": "Create webhook", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.webconnex.com/v2/public/webhooks?product=ticketspice", "body": { "type": "json", "data": "{\"name\":\"My Webhook\",\"url\":\"https://example.com/hook\",\"event\":\"registration.created\",\"active\":true}" } },
+          "docs": "Create a webhook subscription."
+        },
+        {
+          "info": { "name": "View webhook", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/webhooks/:id?product=ticketspice", "params": [{ "name": "id", "value": "", "type": "path", "description": "Webhook id." }] },
+          "docs": "Retrieve a single webhook by id."
+        },
+        {
+          "info": { "name": "Update webhook", "type": "http" },
+          "http": { "method": "PUT", "url": "https://api.webconnex.com/v2/public/webhooks/:id?product=ticketspice", "params": [{ "name": "id", "value": "", "type": "path", "description": "Webhook id." }], "body": { "type": "json", "data": "{\"active\":false}" } },
+          "docs": "Update a webhook subscription."
+        },
+        {
+          "info": { "name": "Delete webhook", "type": "http" },
+          "http": { "method": "DELETE", "url": "https://api.webconnex.com/v2/public/webhooks/:id?product=ticketspice", "params": [{ "name": "id", "value": "", "type": "path", "description": "Webhook id." }] },
+          "docs": "Delete a webhook subscription."
+        },
+        {
+          "info": { "name": "View webhook logs", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/webhooks/:id/logs?product=ticketspice", "params": [{ "name": "id", "value": "", "type": "path", "description": "Webhook id." }] },
+          "docs": "List delivery logs for a webhook."
+        },
+        {
+          "info": { "name": "View webhook log", "type": "http" },
+          "http": { "method": "GET", "url": "https://api.webconnex.com/v2/public/webhooks/:webhookID/logs/:id?product=ticketspice", "params": [{ "name": "webhookID", "value": "", "type": "path", "description": "Webhook id." }, { "name": "id", "value": "", "type": "path", "description": "Log id." }] },
+          "docs": "Retrieve a single webhook delivery log."
+        },
+        {
+          "info": { "name": "Resend webhook", "type": "http" },
+          "http": { "method": "POST", "url": "https://api.webconnex.com/v2/public/webhooks/:webhookID/resend/:logID?product=ticketspice", "params": [{ "name": "webhookID", "value": "", "type": "path", "description": "Webhook id." }, { "name": "logID", "value": "", "type": "path", "description": "Log id." }] },
+          "docs": "Re-send a prior webhook delivery."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,94 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: TicketSpice
+providerId: ticketspice
+created: '2026-07-05'
+modified: '2026-07-05'
+reconciled: false
+tags:
+- Event Ticketing
+- Ticketing
+- Payments
+- Webconnex
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of TicketSpice spend. TicketSpice is a Webconnex product with a
+  usage-based, per-ticket cost model rather than a subscription: a flat fee per
+  ticket sold (0.99 USD for paid tickets 5 USD or more, 0.49 USD for paid tickets
+  under 5 USD or box-office card sales, free for cash box-office sales, 0.99 USD
+  for free-event tickets) plus card processing (2.9 percent plus 0.30 USD via
+  Webconnex Payments, or a 1 percent platform fee plus the processor's fees for a
+  custom processor). Fees are netted out of organizer payouts by default or passed
+  to buyers. The Webconnex REST API used to integrate TicketSpice has no separate
+  metered fee beyond account rate limits; the cost driver is ticket volume and
+  processing, not API calls.
+notes: >-
+  Per-unit rates are grounded in the TicketSpice pricing and fees documentation as
+  of the review date; verify before use. Premium features (SMS, drip campaigns,
+  etc.) add separate per-unit and monthly costs billed to a card on file and
+  invoiced every 30 days.
+sources:
+- https://www.ticketspice.com/pricing
+- https://help.ticketspice.com/en/articles/8757593-ticketspice-pricing-and-fees
+- https://docs.webconnex.io/api/v2/
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Webconnex
+serviceCategory: Event Ticketing and Registration
+billingModel:
+  pricingCategory: Usage-Based
+  billingFrequency: Per Transaction
+  billingCurrency: USD
+  chargeCategories:
+  - Usage
+  - Purchase
+focusColumns:
+  ServiceName: TicketSpice
+  ServiceCategory: Event Ticketing and Registration
+  ProviderName: TicketSpice
+  PublisherName: Webconnex
+  InvoiceIssuerName: Webconnex
+  BillingCurrency: USD
+  ChargeCategory: Usage
+  PricingCategory: Usage-Based
+meters:
+- name: tickets_sold
+  description: Tickets sold, billed at the applicable flat per-ticket fee and deducted from payouts.
+  unit: tickets
+  aggregation: sum
+  dimensions:
+  - account
+  - form
+- name: card_processing
+  description: Card processing on ticket transactions (percentage plus fixed fee, or custom-processor platform fee).
+  unit: transactions
+  aggregation: sum
+  dimensions:
+  - account
+  - form
+- name: premium_features
+  description: Optional premium features such as SMS and drip campaigns, billed per unit plus monthly subscription.
+  unit: units
+  aggregation: sum
+  dimensions:
+  - account
+principles:
+- name: Visibility
+  description: Track ticket volume and processing fees per form/event; reconcile against weekly payouts and the 30-day premium-feature invoice.
+- name: Allocation
+  description: Map costs to events by naming forms per event/campaign so per-ticket and processing fees attribute cleanly.
+- name: Optimization
+  description: Choose whether to absorb or pass fees to buyers; use the box office card reader for the reduced 0.49 USD per-ticket rate; evaluate Webconnex Payments versus a custom processor.
+- name: Accountability
+  description: Assign an owner per event to review per-ticket and processing costs against ticket revenue and target margins.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

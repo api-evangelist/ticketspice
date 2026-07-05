@@ -1,0 +1,154 @@
+aid: ticketspice
+url: https://raw.githubusercontent.com/api-evangelist/ticketspice/refs/heads/main/apis.yml
+name: TicketSpice
+kind: company
+description: TicketSpice is an online event ticketing platform built by Webconnex
+  that lets organizers design fully customizable ticketing pages and sell tickets
+  for events, festivals, tours, and immersive experiences at a flat 99-cent
+  per-ticket fee. TicketSpice is powered by the shared Webconnex REST API
+  (base https://api.webconnex.com/v2/public), the same read-and-manage API surface
+  behind Webconnex products RegFox, RedPodium, and GivingFuel. Callers pass a
+  product parameter of ticketspice and authenticate with an apiKey header to
+  search and view orders, registrants, tickets, transactions, customers, forms,
+  and inventory, manage coupons and webhooks, and check registrants in and out.
+  API access is provisioned per account with an API key and is gated to
+  higher-tier plans.
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Event Ticketing
+- Ticketing
+- Events
+- Registration
+- Payments
+- Webconnex
+created: '2026-07-05'
+modified: '2026-07-05'
+specificationVersion: '0.19'
+apis:
+- aid: ticketspice:ticketspice-forms-inventory-api
+  name: TicketSpice Forms and Inventory API
+  tags:
+  - Forms
+  - Events
+  - Inventory
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.webconnex.io/api/v2/
+  baseURL: https://api.webconnex.com/v2/public
+  properties:
+  - url: https://docs.webconnex.io/api/v2/
+    type: Documentation
+  - url: https://docs.webconnex.io/api/v2/
+    type: APIReference
+  - url: openapi/ticketspice-openapi.yml
+    type: OpenAPI
+  description: List and view the ticketing forms (event pages) in a TicketSpice
+    account and read their remaining ticket and product inventory. Forms are the
+    core event/ticketing objects in TicketSpice; inventory reports remaining
+    supply per ticket level so integrations can surface availability.
+- aid: ticketspice:ticketspice-orders-registrants-api
+  name: TicketSpice Orders and Registrants API
+  tags:
+  - Orders
+  - Registrants
+  - Check-In
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.webconnex.io/api/v2/
+  baseURL: https://api.webconnex.com/v2/public
+  properties:
+  - url: https://docs.webconnex.io/api/v2/
+    type: Documentation
+  - url: openapi/ticketspice-openapi.yml
+    type: OpenAPI
+  description: Search and view ticket orders and the individual registrants (ticket
+    buyers/attendees) within them, and check registrants in or out at the door.
+    Supports cursor pagination via startingAfter, date-range filters, and expand
+    of registrants, tickets, and inventory.
+- aid: ticketspice:ticketspice-tickets-api
+  name: TicketSpice Tickets API
+  tags:
+  - Tickets
+  - Attendees
+  - Events
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.webconnex.io/api/v2/
+  baseURL: https://api.webconnex.com/v2/public
+  properties:
+  - url: https://docs.webconnex.io/api/v2/
+    type: Documentation
+  - url: openapi/ticketspice-openapi.yml
+    type: OpenAPI
+  description: Search and view individual issued tickets across a TicketSpice
+    account - filter by form, status, and creation or update date, then retrieve a
+    single ticket by id for attendee and level detail.
+- aid: ticketspice:ticketspice-transactions-customers-api
+  name: TicketSpice Transactions and Customers API
+  tags:
+  - Transactions
+  - Payments
+  - Customers
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.webconnex.io/api/v2/
+  baseURL: https://api.webconnex.com/v2/public
+  properties:
+  - url: https://docs.webconnex.io/api/v2/
+    type: Documentation
+  - url: openapi/ticketspice-openapi.yml
+    type: OpenAPI
+  description: Search and view financial transactions (payments, refunds) and the
+    customer records tied to them. Enables reconciliation and reporting against
+    ticket sales processed through Webconnex Payments or a custom processor.
+- aid: ticketspice:ticketspice-coupons-api
+  name: TicketSpice Coupons API
+  tags:
+  - Coupons
+  - Discounts
+  - Promotions
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://docs.webconnex.io/api/v2/
+  baseURL: https://api.webconnex.com/v2/public
+  properties:
+  - url: https://docs.webconnex.io/api/v2/
+    type: Documentation
+  - url: openapi/ticketspice-openapi.yml
+    type: OpenAPI
+  description: Full read-write management of discount coupons - list global coupons
+    or coupons scoped to a form, and create, view, update, and delete individual
+    coupons. One of the few write-capable areas of the Webconnex API.
+- aid: ticketspice:ticketspice-webhooks-api
+  name: TicketSpice Webhooks API
+  tags:
+  - Webhooks
+  - Events
+  - Notifications
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://help.ticketspice.com/en/articles/2471509-webhooks
+  baseURL: https://api.webconnex.com/v2/public
+  properties:
+  - url: https://help.ticketspice.com/en/articles/2471509-webhooks
+    type: Documentation
+  - url: openapi/ticketspice-openapi.yml
+    type: OpenAPI
+  description: Programmatically manage outbound webhooks - create, list, view,
+    update, and delete webhook subscriptions, inspect delivery logs, and resend a
+    prior delivery. Webhooks push HTTP callbacks on events such as new
+    registration, subscription/deposit processed, form publish, inventory
+    thresholds, and coupon changes. Delivery is server-to-endpoint HTTP, not a
+    WebSocket.
+common:
+- type: GitHubOrganization
+  url: https://github.com/webconnex
+- type: LinkedIn
+  url: https://www.linkedin.com/company/webconnex
+- type: Website
+  url: https://www.ticketspice.com
+- type: Documentation
+  url: https://docs.webconnex.io/api/v2/
+- type: Plans
+  url: plans/ticketspice-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/ticketspice-rate-limits.yml
+- type: FinOps
+  url: finops/ticketspice-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
