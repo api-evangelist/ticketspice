@@ -1,0 +1,16 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/ticketspice-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: apiKeyAuth
+  type: apiKey
+  in: header
+  parameter: apiKey
+  description: Account API key generated from the TicketSpice/Webconnex dashboard.
+  sources:
+  - openapi/ticketspice-openapi.yml

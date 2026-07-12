@@ -135,6 +135,10 @@ apis:
     thresholds, and coupon changes. Delivery is server-to-endpoint HTTP, not a
     WebSocket.
 common:
+- type: DomainSecurity
+  url: security/ticketspice-domain-security.yml
+- type: Authentication
+  url: authentication/ticketspice-authentication.yml
 - type: GitHubOrganization
   url: https://github.com/webconnex
 - type: LinkedIn
