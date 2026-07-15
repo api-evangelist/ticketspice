@@ -135,6 +135,8 @@ apis:
     thresholds, and coupon changes. Delivery is server-to-endpoint HTTP, not a
     WebSocket.
 common:
+- type: AgenticAccess
+  url: agentic-access/ticketspice-agentic-access.yml
 - type: DomainSecurity
   url: security/ticketspice-domain-security.yml
 - type: Authentication
