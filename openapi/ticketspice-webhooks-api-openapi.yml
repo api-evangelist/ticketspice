@@ -1,0 +1,229 @@
+openapi: 3.0.3
+info:
+  title: TicketSpice API (Webconnex v2 Public) Coupons Webhooks API
+  version: '2.0'
+  description: OpenAPI description of the TicketSpice programmable surface, which is the shared Webconnex v2 Public REST API (base https://api.webconnex.com/v2/public). TicketSpice is one of several Webconnex products (alongside RegFox, RedPodium, and GivingFuel) that share this API; the TicketSpice product is selected with a product=ticketspice query parameter and requests authenticate with an apiKey request header. Paths and methods are transcribed from the public Webconnex v2 reference and are real; a provisioned account API key (available on higher-tier plans) is required to exercise them. Request and response bodies are modeled at a summary level from the reference JSON envelope and are illustrative where the full field-level schema is not published.
+  contact:
+    name: API Evangelist
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary (Webconnex)
+    url: https://www.webconnex.com/privacy-policy
+servers:
+- url: https://api.webconnex.com/v2/public
+  description: Webconnex v2 Public API (shared across TicketSpice, RegFox, RedPodium, GivingFuel)
+security:
+- apiKeyAuth: []
+tags:
+- name: Webhooks
+paths:
+  /webhooks:
+    get:
+      tags:
+      - Webhooks
+      summary: List webhooks
+      operationId: listWebhooks
+      parameters:
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A page of webhooks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvelope'
+    post:
+      tags:
+      - Webhooks
+      summary: Create webhook
+      operationId: createWebhook
+      parameters:
+      - $ref: '#/components/parameters/product'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+      responses:
+        '200':
+          description: Webhook created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /webhooks/{id}:
+    get:
+      tags:
+      - Webhooks
+      summary: View webhook
+      operationId: getWebhook
+      parameters:
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A single webhook.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    put:
+      tags:
+      - Webhooks
+      summary: Update webhook
+      operationId: updateWebhook
+      parameters:
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+      responses:
+        '200':
+          description: Webhook updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    delete:
+      tags:
+      - Webhooks
+      summary: Delete webhook
+      operationId: deleteWebhook
+      parameters:
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: Webhook deleted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /webhooks/{id}/logs:
+    get:
+      tags:
+      - Webhooks
+      summary: View webhook logs
+      operationId: listWebhookLogs
+      parameters:
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A page of webhook delivery logs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvelope'
+  /webhooks/{webhookID}/logs/{id}:
+    get:
+      tags:
+      - Webhooks
+      summary: View webhook log
+      operationId: getWebhookLog
+      parameters:
+      - name: webhookID
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A single webhook delivery log.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /webhooks/{webhookID}/resend/{logID}:
+    post:
+      tags:
+      - Webhooks
+      summary: Resend webhook
+      operationId: resendWebhook
+      parameters:
+      - name: webhookID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: logID
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: Webhook delivery re-sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+components:
+  schemas:
+    Envelope:
+      type: object
+      description: Standard Webconnex response envelope wrapping a single object.
+      properties:
+        responseCode:
+          type: integer
+          example: 200
+        data:
+          type: object
+    Webhook:
+      type: object
+      description: Illustrative webhook subscription object.
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        event:
+          type: string
+        active:
+          type: boolean
+    ListEnvelope:
+      type: object
+      description: Standard Webconnex response envelope wrapping a page of objects.
+      properties:
+        responseCode:
+          type: integer
+          example: 200
+        data:
+          type: array
+          items:
+            type: object
+        totalResults:
+          type: integer
+        hasMore:
+          type: boolean
+  parameters:
+    product:
+      name: product
+      in: query
+      required: true
+      description: Webconnex product to scope the request to. Use ticketspice for TicketSpice.
+      schema:
+        type: string
+        default: ticketspice
+        example: ticketspice
+    pathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: apiKey
+      description: Account API key generated from the TicketSpice/Webconnex dashboard.

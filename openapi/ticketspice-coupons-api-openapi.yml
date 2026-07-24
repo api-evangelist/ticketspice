@@ -1,0 +1,209 @@
+openapi: 3.0.3
+info:
+  title: TicketSpice API (Webconnex v2 Public) Coupons API
+  version: '2.0'
+  description: OpenAPI description of the TicketSpice programmable surface, which is the shared Webconnex v2 Public REST API (base https://api.webconnex.com/v2/public). TicketSpice is one of several Webconnex products (alongside RegFox, RedPodium, and GivingFuel) that share this API; the TicketSpice product is selected with a product=ticketspice query parameter and requests authenticate with an apiKey request header. Paths and methods are transcribed from the public Webconnex v2 reference and are real; a provisioned account API key (available on higher-tier plans) is required to exercise them. Request and response bodies are modeled at a summary level from the reference JSON envelope and are illustrative where the full field-level schema is not published.
+  contact:
+    name: API Evangelist
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary (Webconnex)
+    url: https://www.webconnex.com/privacy-policy
+servers:
+- url: https://api.webconnex.com/v2/public
+  description: Webconnex v2 Public API (shared across TicketSpice, RegFox, RedPodium, GivingFuel)
+security:
+- apiKeyAuth: []
+tags:
+- name: Coupons
+paths:
+  /coupons/global:
+    get:
+      tags:
+      - Coupons
+      summary: List global coupons
+      operationId: listGlobalCoupons
+      parameters:
+      - $ref: '#/components/parameters/product'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/startingAfter'
+      responses:
+        '200':
+          description: A page of global coupons.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvelope'
+  /coupons/form/{formID}:
+    get:
+      tags:
+      - Coupons
+      summary: List form coupons
+      operationId: listFormCoupons
+      parameters:
+      - name: formID
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A page of coupons scoped to the form.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvelope'
+  /coupons:
+    post:
+      tags:
+      - Coupons
+      summary: Create coupon
+      operationId: createCoupon
+      parameters:
+      - $ref: '#/components/parameters/product'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Coupon'
+      responses:
+        '200':
+          description: Coupon created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /coupons/{couponID}:
+    get:
+      tags:
+      - Coupons
+      summary: View coupon
+      operationId: getCoupon
+      parameters:
+      - $ref: '#/components/parameters/couponID'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A single coupon.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    put:
+      tags:
+      - Coupons
+      summary: Update coupon
+      operationId: updateCoupon
+      parameters:
+      - $ref: '#/components/parameters/couponID'
+      - $ref: '#/components/parameters/product'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Coupon'
+      responses:
+        '200':
+          description: Coupon updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    delete:
+      tags:
+      - Coupons
+      summary: Delete coupon
+      operationId: deleteCoupon
+      parameters:
+      - $ref: '#/components/parameters/couponID'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: Coupon deleted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+components:
+  schemas:
+    Coupon:
+      type: object
+      description: Illustrative coupon object (field set summarized from the reference).
+      properties:
+        code:
+          type: string
+        formId:
+          type: string
+        discountType:
+          type: string
+          enum:
+          - percentage
+          - amount
+        discountValue:
+          type: number
+        active:
+          type: boolean
+    Envelope:
+      type: object
+      description: Standard Webconnex response envelope wrapping a single object.
+      properties:
+        responseCode:
+          type: integer
+          example: 200
+        data:
+          type: object
+    ListEnvelope:
+      type: object
+      description: Standard Webconnex response envelope wrapping a page of objects.
+      properties:
+        responseCode:
+          type: integer
+          example: 200
+        data:
+          type: array
+          items:
+            type: object
+        totalResults:
+          type: integer
+        hasMore:
+          type: boolean
+  parameters:
+    product:
+      name: product
+      in: query
+      required: true
+      description: Webconnex product to scope the request to. Use ticketspice for TicketSpice.
+      schema:
+        type: string
+        default: ticketspice
+        example: ticketspice
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Page size. Default 50.
+      schema:
+        type: integer
+        default: 50
+    couponID:
+      name: couponID
+      in: path
+      required: true
+      schema:
+        type: string
+    startingAfter:
+      name: startingAfter
+      in: query
+      required: false
+      description: Cursor for pagination - the id to start after.
+      schema:
+        type: string
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: apiKey
+      description: Account API key generated from the TicketSpice/Webconnex dashboard.
