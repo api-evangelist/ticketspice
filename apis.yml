@@ -13,7 +13,20 @@ description: TicketSpice is an online event ticketing platform built by Webconne
   and inventory, manage coupons and webhooks, and check registrants in and out.
   API access is provisioned per account with an API key and is gated to
   higher-tier plans.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ticketspice.png
 tags:
 - Event Ticketing
 - Ticketing
@@ -25,115 +38,166 @@ created: '2026-07-05'
 modified: '2026-07-05'
 specificationVersion: '0.19'
 apis:
-- aid: ticketspice:ticketspice-forms-inventory-api
-  name: TicketSpice Forms and Inventory API
-  tags:
-  - Forms
-  - Events
-  - Inventory
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.webconnex.io/api/v2/
-  baseURL: https://api.webconnex.com/v2/public
-  properties:
-  - url: https://docs.webconnex.io/api/v2/
-    type: Documentation
-  - url: https://docs.webconnex.io/api/v2/
-    type: APIReference
-  - url: openapi/ticketspice-openapi.yml
-    type: OpenAPI
-  description: List and view the ticketing forms (event pages) in a TicketSpice
-    account and read their remaining ticket and product inventory. Forms are the
-    core event/ticketing objects in TicketSpice; inventory reports remaining
-    supply per ticket level so integrations can surface availability.
-- aid: ticketspice:ticketspice-orders-registrants-api
-  name: TicketSpice Orders and Registrants API
-  tags:
-  - Orders
-  - Registrants
-  - Check-In
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.webconnex.io/api/v2/
-  baseURL: https://api.webconnex.com/v2/public
-  properties:
-  - url: https://docs.webconnex.io/api/v2/
-    type: Documentation
-  - url: openapi/ticketspice-openapi.yml
-    type: OpenAPI
-  description: Search and view ticket orders and the individual registrants (ticket
-    buyers/attendees) within them, and check registrants in or out at the door.
-    Supports cursor pagination via startingAfter, date-range filters, and expand
-    of registrants, tickets, and inventory.
-- aid: ticketspice:ticketspice-tickets-api
-  name: TicketSpice Tickets API
-  tags:
-  - Tickets
-  - Attendees
-  - Events
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.webconnex.io/api/v2/
-  baseURL: https://api.webconnex.com/v2/public
-  properties:
-  - url: https://docs.webconnex.io/api/v2/
-    type: Documentation
-  - url: openapi/ticketspice-openapi.yml
-    type: OpenAPI
-  description: Search and view individual issued tickets across a TicketSpice
-    account - filter by form, status, and creation or update date, then retrieve a
-    single ticket by id for attendee and level detail.
-- aid: ticketspice:ticketspice-transactions-customers-api
-  name: TicketSpice Transactions and Customers API
-  tags:
-  - Transactions
-  - Payments
-  - Customers
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://docs.webconnex.io/api/v2/
-  baseURL: https://api.webconnex.com/v2/public
-  properties:
-  - url: https://docs.webconnex.io/api/v2/
-    type: Documentation
-  - url: openapi/ticketspice-openapi.yml
-    type: OpenAPI
-  description: Search and view financial transactions (payments, refunds) and the
-    customer records tied to them. Enables reconciliation and reporting against
-    ticket sales processed through Webconnex Payments or a custom processor.
 - aid: ticketspice:ticketspice-coupons-api
   name: TicketSpice Coupons API
-  tags:
-  - Coupons
-  - Discounts
-  - Promotions
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  description: The Coupons API from TicketSpice — 4 operation(s) for coupons.
   humanURL: https://docs.webconnex.io/api/v2/
   baseURL: https://api.webconnex.com/v2/public
+  tags:
+  - Coupons
   properties:
-  - url: https://docs.webconnex.io/api/v2/
-    type: Documentation
-  - url: openapi/ticketspice-openapi.yml
-    type: OpenAPI
-  description: Full read-write management of discount coupons - list global coupons
-    or coupons scoped to a form, and create, view, update, and delete individual
-    coupons. One of the few write-capable areas of the Webconnex API.
+  - type: OpenAPI
+    url: openapi/ticketspice-coupons-api-openapi.yml
+  - type: Documentation
+    url: https://docs.webconnex.io/api/v2/
+  - type: APIReference
+    url: https://docs.webconnex.io/api/v2/
+  - type: Documentation
+    url: https://help.ticketspice.com/en/articles/2471509-webhooks
+- aid: ticketspice:ticketspice-customers-api
+  name: TicketSpice Customers API
+  description: The Customers API from TicketSpice — 2 operation(s) for customers.
+  humanURL: https://docs.webconnex.io/api/v2/
+  baseURL: https://api.webconnex.com/v2/public
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/ticketspice-customers-api-openapi.yml
+  - type: Documentation
+    url: https://docs.webconnex.io/api/v2/
+  - type: APIReference
+    url: https://docs.webconnex.io/api/v2/
+  - type: Documentation
+    url: https://help.ticketspice.com/en/articles/2471509-webhooks
+- aid: ticketspice:ticketspice-forms-api
+  name: TicketSpice Forms API
+  description: The Forms API from TicketSpice — 3 operation(s) for forms.
+  humanURL: https://docs.webconnex.io/api/v2/
+  baseURL: https://api.webconnex.com/v2/public
+  tags:
+  - Forms
+  properties:
+  - type: OpenAPI
+    url: openapi/ticketspice-forms-api-openapi.yml
+  - type: Documentation
+    url: https://docs.webconnex.io/api/v2/
+  - type: APIReference
+    url: https://docs.webconnex.io/api/v2/
+  - type: Documentation
+    url: https://help.ticketspice.com/en/articles/2471509-webhooks
+- aid: ticketspice:ticketspice-health-api
+  name: TicketSpice Health API
+  description: The Health API from TicketSpice — 1 operation(s) for health.
+  humanURL: https://docs.webconnex.io/api/v2/
+  baseURL: https://api.webconnex.com/v2/public
+  tags:
+  - Health
+  properties:
+  - type: OpenAPI
+    url: openapi/ticketspice-health-api-openapi.yml
+  - type: Documentation
+    url: https://docs.webconnex.io/api/v2/
+  - type: APIReference
+    url: https://docs.webconnex.io/api/v2/
+  - type: Documentation
+    url: https://help.ticketspice.com/en/articles/2471509-webhooks
+- aid: ticketspice:ticketspice-orders-api
+  name: TicketSpice Orders API
+  description: The Orders API from TicketSpice — 2 operation(s) for orders.
+  humanURL: https://docs.webconnex.io/api/v2/
+  baseURL: https://api.webconnex.com/v2/public
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/ticketspice-orders-api-openapi.yml
+  - type: Documentation
+    url: https://docs.webconnex.io/api/v2/
+  - type: APIReference
+    url: https://docs.webconnex.io/api/v2/
+  - type: Documentation
+    url: https://help.ticketspice.com/en/articles/2471509-webhooks
+- aid: ticketspice:ticketspice-registrants-api
+  name: TicketSpice Registrants API
+  description: The Registrants API from TicketSpice — 4 operation(s) for registrants.
+  humanURL: https://docs.webconnex.io/api/v2/
+  baseURL: https://api.webconnex.com/v2/public
+  tags:
+  - Registrants
+  properties:
+  - type: OpenAPI
+    url: openapi/ticketspice-registrants-api-openapi.yml
+  - type: Documentation
+    url: https://docs.webconnex.io/api/v2/
+  - type: APIReference
+    url: https://docs.webconnex.io/api/v2/
+  - type: Documentation
+    url: https://help.ticketspice.com/en/articles/2471509-webhooks
+- aid: ticketspice:ticketspice-subscriptions-api
+  name: TicketSpice Subscriptions API
+  description: The Subscriptions API from TicketSpice — 2 operation(s) for subscriptions.
+  humanURL: https://docs.webconnex.io/api/v2/
+  baseURL: https://api.webconnex.com/v2/public
+  tags:
+  - Subscriptions
+  properties:
+  - type: OpenAPI
+    url: openapi/ticketspice-subscriptions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.webconnex.io/api/v2/
+  - type: APIReference
+    url: https://docs.webconnex.io/api/v2/
+  - type: Documentation
+    url: https://help.ticketspice.com/en/articles/2471509-webhooks
+- aid: ticketspice:ticketspice-tickets-api
+  name: TicketSpice Tickets API
+  description: The Tickets API from TicketSpice — 2 operation(s) for tickets.
+  humanURL: https://docs.webconnex.io/api/v2/
+  baseURL: https://api.webconnex.com/v2/public
+  tags:
+  - Tickets
+  properties:
+  - type: OpenAPI
+    url: openapi/ticketspice-tickets-api-openapi.yml
+  - type: Documentation
+    url: https://docs.webconnex.io/api/v2/
+  - type: APIReference
+    url: https://docs.webconnex.io/api/v2/
+  - type: Documentation
+    url: https://help.ticketspice.com/en/articles/2471509-webhooks
+- aid: ticketspice:ticketspice-transactions-api
+  name: TicketSpice Transactions API
+  description: The Transactions API from TicketSpice — 2 operation(s) for transactions.
+  humanURL: https://docs.webconnex.io/api/v2/
+  baseURL: https://api.webconnex.com/v2/public
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/ticketspice-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://docs.webconnex.io/api/v2/
+  - type: APIReference
+    url: https://docs.webconnex.io/api/v2/
+  - type: Documentation
+    url: https://help.ticketspice.com/en/articles/2471509-webhooks
 - aid: ticketspice:ticketspice-webhooks-api
   name: TicketSpice Webhooks API
+  description: The Webhooks API from TicketSpice — 5 operation(s) for webhooks.
+  humanURL: https://docs.webconnex.io/api/v2/
+  baseURL: https://api.webconnex.com/v2/public
   tags:
   - Webhooks
-  - Events
-  - Notifications
-  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-  humanURL: https://help.ticketspice.com/en/articles/2471509-webhooks
-  baseURL: https://api.webconnex.com/v2/public
   properties:
-  - url: https://help.ticketspice.com/en/articles/2471509-webhooks
-    type: Documentation
-  - url: openapi/ticketspice-openapi.yml
-    type: OpenAPI
-  description: Programmatically manage outbound webhooks - create, list, view,
-    update, and delete webhook subscriptions, inspect delivery logs, and resend a
-    prior delivery. Webhooks push HTTP callbacks on events such as new
-    registration, subscription/deposit processed, form publish, inventory
-    thresholds, and coupon changes. Delivery is server-to-endpoint HTTP, not a
-    WebSocket.
+  - type: OpenAPI
+    url: openapi/ticketspice-webhooks-api-openapi.yml
+  - type: Documentation
+    url: https://docs.webconnex.io/api/v2/
+  - type: APIReference
+    url: https://docs.webconnex.io/api/v2/
+  - type: Documentation
+    url: https://help.ticketspice.com/en/articles/2471509-webhooks
 common:
 - type: AgenticAccess
   url: agentic-access/ticketspice-agentic-access.yml
