@@ -1,0 +1,725 @@
+openapi: 3.0.3
+info:
+  title: TicketSpice API (Webconnex v2 Public)
+  version: '2.0'
+  description: >-
+    OpenAPI description of the TicketSpice programmable surface, which is the
+    shared Webconnex v2 Public REST API (base https://api.webconnex.com/v2/public).
+    TicketSpice is one of several Webconnex products (alongside RegFox, RedPodium,
+    and GivingFuel) that share this API; the TicketSpice product is selected with a
+    product=ticketspice query parameter and requests authenticate with an apiKey
+    request header. Paths and methods are transcribed from the public Webconnex v2
+    reference and are real; a provisioned account API key (available on higher-tier
+    plans) is required to exercise them. Request and response bodies are modeled at
+    a summary level from the reference JSON envelope and are illustrative where the
+    full field-level schema is not published.
+  contact:
+    name: API Evangelist
+    email: kin@apievangelist.com
+  license:
+    name: Proprietary (Webconnex)
+    url: https://www.webconnex.com/privacy-policy
+servers:
+- url: https://api.webconnex.com/v2/public
+  description: Webconnex v2 Public API (shared across TicketSpice, RegFox, RedPodium, GivingFuel)
+security:
+- apiKeyAuth: []
+tags:
+- name: Health
+- name: Forms
+- name: Orders
+- name: Registrants
+- name: Tickets
+- name: Subscriptions
+- name: Transactions
+- name: Customers
+- name: Coupons
+- name: Webhooks
+paths:
+  /ping:
+    get:
+      tags: [Health]
+      summary: Health check
+      operationId: ping
+      responses:
+        '200':
+          description: API is reachable and the API key is valid.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /forms:
+    get:
+      tags: [Forms]
+      summary: List forms
+      description: List the ticketing forms (event pages) in the account.
+      operationId: listForms
+      parameters:
+      - $ref: '#/components/parameters/product'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/startingAfter'
+      responses:
+        '200':
+          description: A page of forms.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvelope'
+  /forms/{id}:
+    get:
+      tags: [Forms]
+      summary: View form
+      operationId: getForm
+      parameters:
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A single form.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /forms/{formID}/inventory:
+    get:
+      tags: [Forms]
+      summary: View inventory
+      description: Remaining ticket and product inventory for a form.
+      operationId: getFormInventory
+      parameters:
+      - name: formID
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: Inventory for the form.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /search/orders:
+    get:
+      tags: [Orders]
+      summary: Search orders
+      operationId: searchOrders
+      parameters:
+      - $ref: '#/components/parameters/product'
+      - $ref: '#/components/parameters/formId'
+      - $ref: '#/components/parameters/status'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/startingAfter'
+      - $ref: '#/components/parameters/dateCreatedAfter'
+      - $ref: '#/components/parameters/dateCreatedBefore'
+      - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: A page of orders.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvelope'
+  /search/orders/{id}:
+    get:
+      tags: [Orders]
+      summary: View order
+      operationId: getOrder
+      parameters:
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      - $ref: '#/components/parameters/expand'
+      responses:
+        '200':
+          description: A single order.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /search/registrants:
+    get:
+      tags: [Registrants]
+      summary: Search registrants
+      operationId: searchRegistrants
+      parameters:
+      - $ref: '#/components/parameters/product'
+      - $ref: '#/components/parameters/formId'
+      - $ref: '#/components/parameters/status'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/startingAfter'
+      - $ref: '#/components/parameters/dateCreatedAfter'
+      - $ref: '#/components/parameters/dateCreatedBefore'
+      responses:
+        '200':
+          description: A page of registrants.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvelope'
+  /search/registrants/{id}:
+    get:
+      tags: [Registrants]
+      summary: View registrant
+      operationId: getRegistrant
+      parameters:
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A single registrant.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /registrant/check-in:
+    post:
+      tags: [Registrants]
+      summary: Check-in registrant
+      operationId: checkInRegistrant
+      parameters:
+      - $ref: '#/components/parameters/product'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckInRequest'
+      responses:
+        '200':
+          description: Registrant checked in.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /registrant/check-out:
+    post:
+      tags: [Registrants]
+      summary: Check-out registrant
+      operationId: checkOutRegistrant
+      parameters:
+      - $ref: '#/components/parameters/product'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CheckInRequest'
+      responses:
+        '200':
+          description: Registrant checked out.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /search/tickets:
+    get:
+      tags: [Tickets]
+      summary: Search tickets
+      operationId: searchTickets
+      parameters:
+      - $ref: '#/components/parameters/product'
+      - $ref: '#/components/parameters/formId'
+      - $ref: '#/components/parameters/status'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/startingAfter'
+      responses:
+        '200':
+          description: A page of tickets.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvelope'
+  /search/tickets/{id}:
+    get:
+      tags: [Tickets]
+      summary: View ticket
+      operationId: getTicket
+      parameters:
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A single ticket.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /search/subscriptions:
+    get:
+      tags: [Subscriptions]
+      summary: Search subscriptions
+      operationId: searchSubscriptions
+      parameters:
+      - $ref: '#/components/parameters/product'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/startingAfter'
+      responses:
+        '200':
+          description: A page of subscriptions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvelope'
+  /search/subscriptions/{id}:
+    get:
+      tags: [Subscriptions]
+      summary: View subscription
+      operationId: getSubscription
+      parameters:
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A single subscription.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /search/transactions:
+    get:
+      tags: [Transactions]
+      summary: Search transactions
+      operationId: searchTransactions
+      parameters:
+      - $ref: '#/components/parameters/product'
+      - $ref: '#/components/parameters/formId'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/startingAfter'
+      - $ref: '#/components/parameters/dateCreatedAfter'
+      - $ref: '#/components/parameters/dateCreatedBefore'
+      responses:
+        '200':
+          description: A page of transactions.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvelope'
+  /search/transactions/{id}:
+    get:
+      tags: [Transactions]
+      summary: View transaction
+      operationId: getTransaction
+      parameters:
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A single transaction.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /search/customers:
+    get:
+      tags: [Customers]
+      summary: Search customers
+      operationId: searchCustomers
+      parameters:
+      - $ref: '#/components/parameters/product'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/startingAfter'
+      responses:
+        '200':
+          description: A page of customers.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvelope'
+  /search/customers/{id}:
+    get:
+      tags: [Customers]
+      summary: View customer
+      operationId: getCustomer
+      parameters:
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A single customer.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /coupons/global:
+    get:
+      tags: [Coupons]
+      summary: List global coupons
+      operationId: listGlobalCoupons
+      parameters:
+      - $ref: '#/components/parameters/product'
+      - $ref: '#/components/parameters/limit'
+      - $ref: '#/components/parameters/startingAfter'
+      responses:
+        '200':
+          description: A page of global coupons.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvelope'
+  /coupons/form/{formID}:
+    get:
+      tags: [Coupons]
+      summary: List form coupons
+      operationId: listFormCoupons
+      parameters:
+      - name: formID
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A page of coupons scoped to the form.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvelope'
+  /coupons:
+    post:
+      tags: [Coupons]
+      summary: Create coupon
+      operationId: createCoupon
+      parameters:
+      - $ref: '#/components/parameters/product'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Coupon'
+      responses:
+        '200':
+          description: Coupon created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /coupons/{couponID}:
+    get:
+      tags: [Coupons]
+      summary: View coupon
+      operationId: getCoupon
+      parameters:
+      - $ref: '#/components/parameters/couponID'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A single coupon.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    put:
+      tags: [Coupons]
+      summary: Update coupon
+      operationId: updateCoupon
+      parameters:
+      - $ref: '#/components/parameters/couponID'
+      - $ref: '#/components/parameters/product'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Coupon'
+      responses:
+        '200':
+          description: Coupon updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    delete:
+      tags: [Coupons]
+      summary: Delete coupon
+      operationId: deleteCoupon
+      parameters:
+      - $ref: '#/components/parameters/couponID'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: Coupon deleted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /webhooks:
+    get:
+      tags: [Webhooks]
+      summary: List webhooks
+      operationId: listWebhooks
+      parameters:
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A page of webhooks.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvelope'
+    post:
+      tags: [Webhooks]
+      summary: Create webhook
+      operationId: createWebhook
+      parameters:
+      - $ref: '#/components/parameters/product'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+      responses:
+        '200':
+          description: Webhook created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /webhooks/{id}:
+    get:
+      tags: [Webhooks]
+      summary: View webhook
+      operationId: getWebhook
+      parameters:
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A single webhook.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    put:
+      tags: [Webhooks]
+      summary: Update webhook
+      operationId: updateWebhook
+      parameters:
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Webhook'
+      responses:
+        '200':
+          description: Webhook updated.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+    delete:
+      tags: [Webhooks]
+      summary: Delete webhook
+      operationId: deleteWebhook
+      parameters:
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: Webhook deleted.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /webhooks/{id}/logs:
+    get:
+      tags: [Webhooks]
+      summary: View webhook logs
+      operationId: listWebhookLogs
+      parameters:
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A page of webhook delivery logs.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListEnvelope'
+  /webhooks/{webhookID}/logs/{id}:
+    get:
+      tags: [Webhooks]
+      summary: View webhook log
+      operationId: getWebhookLog
+      parameters:
+      - name: webhookID
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/pathId'
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: A single webhook delivery log.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+  /webhooks/{webhookID}/resend/{logID}:
+    post:
+      tags: [Webhooks]
+      summary: Resend webhook
+      operationId: resendWebhook
+      parameters:
+      - name: webhookID
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: logID
+        in: path
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/product'
+      responses:
+        '200':
+          description: Webhook delivery re-sent.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Envelope'
+components:
+  securitySchemes:
+    apiKeyAuth:
+      type: apiKey
+      in: header
+      name: apiKey
+      description: Account API key generated from the TicketSpice/Webconnex dashboard.
+  parameters:
+    product:
+      name: product
+      in: query
+      required: true
+      description: Webconnex product to scope the request to. Use ticketspice for TicketSpice.
+      schema:
+        type: string
+        default: ticketspice
+        example: ticketspice
+    pathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    couponID:
+      name: couponID
+      in: path
+      required: true
+      schema:
+        type: string
+    formId:
+      name: formId
+      in: query
+      required: false
+      description: Filter results to a single form (event page).
+      schema:
+        type: string
+    status:
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Page size. Default 50.
+      schema:
+        type: integer
+        default: 50
+    startingAfter:
+      name: startingAfter
+      in: query
+      required: false
+      description: Cursor for pagination - the id to start after.
+      schema:
+        type: string
+    expand:
+      name: expand
+      in: query
+      required: false
+      description: Comma-separated related objects to expand (registrants, tickets, subscription, inventory).
+      schema:
+        type: string
+    dateCreatedAfter:
+      name: dateCreatedAfter
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date-time
+    dateCreatedBefore:
+      name: dateCreatedBefore
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date-time
+  schemas:
+    Envelope:
+      type: object
+      description: Standard Webconnex response envelope wrapping a single object.
+      properties:
+        responseCode:
+          type: integer
+          example: 200
+        data:
+          type: object
+    ListEnvelope:
+      type: object
+      description: Standard Webconnex response envelope wrapping a page of objects.
+      properties:
+        responseCode:
+          type: integer
+          example: 200
+        data:
+          type: array
+          items:
+            type: object
+        totalResults:
+          type: integer
+        hasMore:
+          type: boolean
+    CheckInRequest:
+      type: object
+      description: Illustrative body for registrant check-in/check-out.
+      properties:
+        registrantId:
+          type: string
+    Coupon:
+      type: object
+      description: Illustrative coupon object (field set summarized from the reference).
+      properties:
+        code:
+          type: string
+        formId:
+          type: string
+        discountType:
+          type: string
+          enum: [percentage, amount]
+        discountValue:
+          type: number
+        active:
+          type: boolean
+    Webhook:
+      type: object
+      description: Illustrative webhook subscription object.
+      properties:
+        name:
+          type: string
+        url:
+          type: string
+          format: uri
+        event:
+          type: string
+        active:
+          type: boolean
