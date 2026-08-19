@@ -1,0 +1,265 @@
+{
+  "item": [
+    {
+      "id": "8d9ab549-cdcf-40e7-965c-ed2a1113325f",
+      "name": "Subscriptions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "bcf5d8e4-2a45-4919-b476-70002750f615",
+          "name": "Search subscriptions",
+          "request": {
+            "name": "Search subscriptions",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "subscriptions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "ticketspice",
+                  "description": "(Required) Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Page size. Default 50."
+                },
+                {
+                  "disabled": false,
+                  "key": "startingAfter",
+                  "value": "<string>",
+                  "description": "Cursor for pagination - the id to start after."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe9255df-5278-42b7-8d61-b99ddd22640b",
+              "name": "A page of subscriptions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "subscriptions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "ticketspice"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "startingAfter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseCode\": 200,\n  \"totalResults\": 4326,\n  \"hasMore\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "22999275-704a-423c-bfe1-860898bb7fc7",
+          "name": "View subscription",
+          "request": {
+            "name": "View subscription",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "subscriptions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "ticketspice",
+                  "description": "(Required) Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9b29654b-1f3f-4ac7-b5d8-471785116481",
+              "name": "A single subscription.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "subscriptions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "ticketspice"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseCode\": 200,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.webconnex.com/v2/public",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9c1789c1-a1fe-401b-b20e-54799863c925",
+    "name": "TicketSpice API (Webconnex v2 Public) Coupons Subscriptions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI description of the TicketSpice programmable surface, which is the shared Webconnex v2 Public REST API (base https://api.webconnex.com/v2/public). TicketSpice is one of several Webconnex products (alongside RegFox, RedPodium, and GivingFuel) that share this API; the TicketSpice product is selected with a product=ticketspice query parameter and requests authenticate with an apiKey request header. Paths and methods are transcribed from the public Webconnex v2 reference and are real; a provisioned account API key (available on higher-tier plans) is required to exercise them. Request and response bodies are modeled at a summary level from the reference JSON envelope and are illustrative where the full field-level schema is not published.\n\nContact Support:\n Name: API Evangelist\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

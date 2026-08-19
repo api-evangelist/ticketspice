@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TicketSpice API (Webconnex v2 Public) Coupons Health API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apiKey",
+      "value": "{{apiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Health check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.webconnex.com/v2/public/ping"
+          },
+          "docs": "Health check"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

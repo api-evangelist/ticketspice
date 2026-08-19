@@ -1,0 +1,105 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TicketSpice API (Webconnex v2 Public) Coupons Forms API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apiKey",
+      "value": "{{apiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Forms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List forms",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.webconnex.com/v2/public/forms",
+            "params": [
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size. Default 50."
+              },
+              {
+                "name": "startingAfter",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination - the id to start after."
+              }
+            ]
+          },
+          "docs": "List the ticketing forms (event pages) in the account."
+        },
+        {
+          "info": {
+            "name": "View form",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.webconnex.com/v2/public/forms/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              }
+            ]
+          },
+          "docs": "View form"
+        },
+        {
+          "info": {
+            "name": "View inventory",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.webconnex.com/v2/public/forms/:formID/inventory",
+            "params": [
+              {
+                "name": "formID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              }
+            ]
+          },
+          "docs": "Remaining ticket and product inventory for a form."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

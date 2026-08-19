@@ -1,0 +1,293 @@
+{
+  "item": [
+    {
+      "id": "961b5ed8-48fc-4858-b5db-54b7172563c2",
+      "name": "Transactions",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4e45b75f-39bb-4878-ab89-4f1530e394e9",
+          "name": "Search transactions",
+          "request": {
+            "name": "Search transactions",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "ticketspice",
+                  "description": "(Required) Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+                },
+                {
+                  "disabled": false,
+                  "key": "formId",
+                  "value": "<string>",
+                  "description": "Filter results to a single form (event page)."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Page size. Default 50."
+                },
+                {
+                  "disabled": false,
+                  "key": "startingAfter",
+                  "value": "<string>",
+                  "description": "Cursor for pagination - the id to start after."
+                },
+                {
+                  "disabled": false,
+                  "key": "dateCreatedAfter",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateCreatedBefore",
+                  "value": "<dateTime>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cce0b2da-2705-4468-b810-0c3b5eed65c6",
+              "name": "A page of transactions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "ticketspice"
+                    },
+                    {
+                      "key": "formId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "startingAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateCreatedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "dateCreatedBefore",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseCode\": 200,\n  \"totalResults\": 9033,\n  \"hasMore\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abf501aa-59bb-4fce-bf30-6dd8bc6603e2",
+          "name": "View transaction",
+          "request": {
+            "name": "View transaction",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "transactions",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "ticketspice",
+                  "description": "(Required) Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "998311ad-a483-4b49-9fee-754f780f16eb",
+              "name": "A single transaction.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "transactions",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "ticketspice"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseCode\": 200,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.webconnex.com/v2/public",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "91cb4f1c-500b-4420-b11e-03f1b16fce7a",
+    "name": "TicketSpice API (Webconnex v2 Public) Coupons Transactions API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI description of the TicketSpice programmable surface, which is the shared Webconnex v2 Public REST API (base https://api.webconnex.com/v2/public). TicketSpice is one of several Webconnex products (alongside RegFox, RedPodium, and GivingFuel) that share this API; the TicketSpice product is selected with a product=ticketspice query parameter and requests authenticate with an apiKey request header. Paths and methods are transcribed from the public Webconnex v2 reference and are real; a provisioned account API key (available on higher-tier plans) is required to exercise them. Request and response bodies are modeled at a summary level from the reference JSON envelope and are illustrative where the full field-level schema is not published.\n\nContact Support:\n Name: API Evangelist\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

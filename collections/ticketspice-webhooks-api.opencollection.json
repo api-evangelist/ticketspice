@@ -1,0 +1,226 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TicketSpice API (Webconnex v2 Public) Coupons Webhooks API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apiKey",
+      "value": "{{apiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhooks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.webconnex.com/v2/public/webhooks",
+            "params": [
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              }
+            ]
+          },
+          "docs": "List webhooks"
+        },
+        {
+          "info": {
+            "name": "Create webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.webconnex.com/v2/public/webhooks",
+            "params": [
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create webhook"
+        },
+        {
+          "info": {
+            "name": "View webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.webconnex.com/v2/public/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              }
+            ]
+          },
+          "docs": "View webhook"
+        },
+        {
+          "info": {
+            "name": "Update webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.webconnex.com/v2/public/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update webhook"
+        },
+        {
+          "info": {
+            "name": "Delete webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://api.webconnex.com/v2/public/webhooks/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              }
+            ]
+          },
+          "docs": "Delete webhook"
+        },
+        {
+          "info": {
+            "name": "View webhook logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.webconnex.com/v2/public/webhooks/:id/logs",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              }
+            ]
+          },
+          "docs": "View webhook logs"
+        },
+        {
+          "info": {
+            "name": "View webhook log",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.webconnex.com/v2/public/webhooks/:webhookID/logs/:id",
+            "params": [
+              {
+                "name": "webhookID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              }
+            ]
+          },
+          "docs": "View webhook log"
+        },
+        {
+          "info": {
+            "name": "Resend webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.webconnex.com/v2/public/webhooks/:webhookID/resend/:logID",
+            "params": [
+              {
+                "name": "webhookID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "logID",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              }
+            ]
+          },
+          "docs": "Resend webhook"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

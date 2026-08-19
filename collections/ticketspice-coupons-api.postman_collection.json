@@ -1,0 +1,709 @@
+{
+  "item": [
+    {
+      "id": "67d01f64-7bef-45ec-811f-cffa211a2700",
+      "name": "Coupons",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3b408a9c-767b-402e-8442-f958272bc8b5",
+          "name": "List global coupons",
+          "request": {
+            "name": "List global coupons",
+            "description": {},
+            "url": {
+              "path": [
+                "coupons",
+                "global"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "ticketspice",
+                  "description": "(Required) Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Page size. Default 50."
+                },
+                {
+                  "disabled": false,
+                  "key": "startingAfter",
+                  "value": "<string>",
+                  "description": "Cursor for pagination - the id to start after."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c6e213b8-c360-4973-96eb-a5b1e5f02fd9",
+              "name": "A page of global coupons.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    "global"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "ticketspice"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "startingAfter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseCode\": 200,\n  \"totalResults\": 9496,\n  \"hasMore\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8109c145-881c-4e2d-8b62-2c16d38ed5eb",
+          "name": "List form coupons",
+          "request": {
+            "name": "List form coupons",
+            "description": {},
+            "url": {
+              "path": [
+                "coupons",
+                "form",
+                ":formID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "ticketspice",
+                  "description": "(Required) Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "formID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1a2c2cd5-a32e-486b-8635-c917b61a671a",
+              "name": "A page of coupons scoped to the form.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    "form",
+                    ":formID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "ticketspice"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "formID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseCode\": 200,\n  \"totalResults\": 2974,\n  \"hasMore\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "40c9ca5d-9fd7-4859-9a4a-d40410d63813",
+          "name": "Create coupon",
+          "request": {
+            "name": "Create coupon",
+            "description": {},
+            "url": {
+              "path": [
+                "coupons"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "ticketspice",
+                  "description": "(Required) Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"<string>\",\n  \"formId\": \"<string>\",\n  \"discountType\": \"<string>\",\n  \"discountValue\": \"<number>\",\n  \"active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fe5f448a-384b-4707-9bdd-7e777676081c",
+              "name": "Coupon created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "ticketspice"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"<string>\",\n  \"formId\": \"<string>\",\n  \"discountType\": \"<string>\",\n  \"discountValue\": \"<number>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseCode\": 200,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a534c139-712a-40b1-a119-791ccd1c64d4",
+          "name": "View coupon",
+          "request": {
+            "name": "View coupon",
+            "description": {},
+            "url": {
+              "path": [
+                "coupons",
+                ":couponID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "ticketspice",
+                  "description": "(Required) Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "couponID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f7334eff-4da3-4ab5-90f3-b6779978c654",
+              "name": "A single coupon.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":couponID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "ticketspice"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "couponID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseCode\": 200,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2f0401e6-2de5-4442-adbb-fff017604c4a",
+          "name": "Update coupon",
+          "request": {
+            "name": "Update coupon",
+            "description": {},
+            "url": {
+              "path": [
+                "coupons",
+                ":couponID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "ticketspice",
+                  "description": "(Required) Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "couponID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"<string>\",\n  \"formId\": \"<string>\",\n  \"discountType\": \"<string>\",\n  \"discountValue\": \"<number>\",\n  \"active\": \"<boolean>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "e519bb84-0c31-407f-b5d6-9e9b5c649e44",
+              "name": "Coupon updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":couponID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "ticketspice"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "couponID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"code\": \"<string>\",\n  \"formId\": \"<string>\",\n  \"discountType\": \"<string>\",\n  \"discountValue\": \"<number>\",\n  \"active\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseCode\": 200,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b0d6727e-b3ca-414b-8009-c9e582393a71",
+          "name": "Delete coupon",
+          "request": {
+            "name": "Delete coupon",
+            "description": {},
+            "url": {
+              "path": [
+                "coupons",
+                ":couponID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "ticketspice",
+                  "description": "(Required) Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "couponID",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3893331b-f975-4977-b790-b2631a84fb36",
+              "name": "Coupon deleted.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "coupons",
+                    ":couponID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "ticketspice"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "couponID",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseCode\": 200,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.webconnex.com/v2/public",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b8d28e5b-b12f-4497-bbc8-aa19a8dfe14d",
+    "name": "TicketSpice API (Webconnex v2 Public) Coupons API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI description of the TicketSpice programmable surface, which is the shared Webconnex v2 Public REST API (base https://api.webconnex.com/v2/public). TicketSpice is one of several Webconnex products (alongside RegFox, RedPodium, and GivingFuel) that share this API; the TicketSpice product is selected with a product=ticketspice query parameter and requests authenticate with an apiKey request header. Paths and methods are transcribed from the public Webconnex v2 reference and are real; a provisioned account API key (available on higher-tier plans) is required to exercise them. Request and response bodies are modeled at a summary level from the reference JSON envelope and are illustrative where the full field-level schema is not published.\n\nContact Support:\n Name: API Evangelist\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

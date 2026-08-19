@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TicketSpice API (Webconnex v2 Public) Coupons Customers API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apiKey",
+      "value": "{{apiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.webconnex.com/v2/public/search/customers",
+            "params": [
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size. Default 50."
+              },
+              {
+                "name": "startingAfter",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination - the id to start after."
+              }
+            ]
+          },
+          "docs": "Search customers"
+        },
+        {
+          "info": {
+            "name": "View customer",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.webconnex.com/v2/public/search/customers/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              }
+            ]
+          },
+          "docs": "View customer"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

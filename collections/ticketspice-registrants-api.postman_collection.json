@@ -1,0 +1,522 @@
+{
+  "item": [
+    {
+      "id": "2e6048f4-345b-4845-ae94-488289ecc56a",
+      "name": "Registrants",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4588d367-9a27-4b81-a444-445552b770dc",
+          "name": "Search registrants",
+          "request": {
+            "name": "Search registrants",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "registrants"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "ticketspice",
+                  "description": "(Required) Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+                },
+                {
+                  "disabled": false,
+                  "key": "formId",
+                  "value": "<string>",
+                  "description": "Filter results to a single form (event page)."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Page size. Default 50."
+                },
+                {
+                  "disabled": false,
+                  "key": "startingAfter",
+                  "value": "<string>",
+                  "description": "Cursor for pagination - the id to start after."
+                },
+                {
+                  "disabled": false,
+                  "key": "dateCreatedAfter",
+                  "value": "<dateTime>"
+                },
+                {
+                  "disabled": false,
+                  "key": "dateCreatedBefore",
+                  "value": "<dateTime>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d906970-f64b-4357-a74f-d8daa7196b39",
+              "name": "A page of registrants.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "registrants"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "ticketspice"
+                    },
+                    {
+                      "key": "formId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "startingAfter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "dateCreatedAfter",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "dateCreatedBefore",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseCode\": 200,\n  \"totalResults\": 1783,\n  \"hasMore\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "be38b952-8894-4308-b1b0-2ad0daebb012",
+          "name": "View registrant",
+          "request": {
+            "name": "View registrant",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "registrants",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "ticketspice",
+                  "description": "(Required) Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "83ca14c0-b24c-4cac-b5c5-5a4acb0844a5",
+              "name": "A single registrant.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "registrants",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "ticketspice"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseCode\": 200,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "772046ce-5be3-44ad-b6ac-afaffe296296",
+          "name": "Check-in registrant",
+          "request": {
+            "name": "Check-in registrant",
+            "description": {},
+            "url": {
+              "path": [
+                "registrant",
+                "check-in"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "ticketspice",
+                  "description": "(Required) Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"registrantId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4108abfe-5d7e-4e82-b2c4-c761e4c50b76",
+              "name": "Registrant checked in.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registrant",
+                    "check-in"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "ticketspice"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"registrantId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseCode\": 200,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ac078e1c-5015-4544-b3cb-6c9cfbd417a4",
+          "name": "Check-out registrant",
+          "request": {
+            "name": "Check-out registrant",
+            "description": {},
+            "url": {
+              "path": [
+                "registrant",
+                "check-out"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "ticketspice",
+                  "description": "(Required) Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"registrantId\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "b0ee75ae-1f1d-4863-985a-18cd0fee9683",
+              "name": "Registrant checked out.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "registrant",
+                    "check-out"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "ticketspice"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"registrantId\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseCode\": 200,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.webconnex.com/v2/public",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "95077f25-6585-47bf-96a8-54b08355d9f5",
+    "name": "TicketSpice API (Webconnex v2 Public) Coupons Registrants API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI description of the TicketSpice programmable surface, which is the shared Webconnex v2 Public REST API (base https://api.webconnex.com/v2/public). TicketSpice is one of several Webconnex products (alongside RegFox, RedPodium, and GivingFuel) that share this API; the TicketSpice product is selected with a product=ticketspice query parameter and requests authenticate with an apiKey request header. Paths and methods are transcribed from the public Webconnex v2 reference and are real; a provisioned account API key (available on higher-tier plans) is required to exercise them. Request and response bodies are modeled at a summary level from the reference JSON envelope and are illustrative where the full field-level schema is not published.\n\nContact Support:\n Name: API Evangelist\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

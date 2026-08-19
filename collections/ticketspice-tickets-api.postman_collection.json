@@ -1,0 +1,284 @@
+{
+  "item": [
+    {
+      "id": "7cb2ff3d-468c-4098-b5a5-03b3097a38b4",
+      "name": "Tickets",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e24a0e2c-195f-4c68-80c0-f095c516ccee",
+          "name": "Search tickets",
+          "request": {
+            "name": "Search tickets",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "tickets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "ticketspice",
+                  "description": "(Required) Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+                },
+                {
+                  "disabled": false,
+                  "key": "formId",
+                  "value": "<string>",
+                  "description": "Filter results to a single form (event page)."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Page size. Default 50."
+                },
+                {
+                  "disabled": false,
+                  "key": "startingAfter",
+                  "value": "<string>",
+                  "description": "Cursor for pagination - the id to start after."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a9b3b688-6ffb-4327-b285-64c48d699842",
+              "name": "A page of tickets.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "tickets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "ticketspice"
+                    },
+                    {
+                      "key": "formId",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "status",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "startingAfter",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseCode\": 200,\n  \"totalResults\": 657,\n  \"hasMore\": true\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d4577867-eb8d-4350-b18c-debb223827b6",
+          "name": "View ticket",
+          "request": {
+            "name": "View ticket",
+            "description": {},
+            "url": {
+              "path": [
+                "search",
+                "tickets",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "product",
+                  "value": "ticketspice",
+                  "description": "(Required) Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) "
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "08478c3b-0581-4b4b-9406-354a7a936ad4",
+              "name": "A single ticket.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "search",
+                    "tickets",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "product",
+                      "value": "ticketspice"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) "
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "apiKey",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"responseCode\": 200,\n  \"data\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.webconnex.com/v2/public",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "apiKey"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "64f13a7a-c4ad-42de-9e58-7dba8032dd71",
+    "name": "TicketSpice API (Webconnex v2 Public) Coupons Tickets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OpenAPI description of the TicketSpice programmable surface, which is the shared Webconnex v2 Public REST API (base https://api.webconnex.com/v2/public). TicketSpice is one of several Webconnex products (alongside RegFox, RedPodium, and GivingFuel) that share this API; the TicketSpice product is selected with a product=ticketspice query parameter and requests authenticate with an apiKey request header. Paths and methods are transcribed from the public Webconnex v2 reference and are real; a provisioned account API key (available on higher-tier plans) is required to exercise them. Request and response bodies are modeled at a summary level from the reference JSON envelope and are illustrative where the full field-level schema is not published.\n\nContact Support:\n Name: API Evangelist\n Email: kin@apievangelist.com",
+      "type": "text/plain"
+    }
+  }
+}

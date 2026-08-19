@@ -1,0 +1,148 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TicketSpice API (Webconnex v2 Public) Coupons Registrants API",
+    "version": "2.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "apiKey",
+      "value": "{{apiKey}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Registrants",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search registrants",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.webconnex.com/v2/public/search/registrants",
+            "params": [
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              },
+              {
+                "name": "formId",
+                "value": "",
+                "type": "query",
+                "description": "Filter results to a single form (event page)."
+              },
+              {
+                "name": "status",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Page size. Default 50."
+              },
+              {
+                "name": "startingAfter",
+                "value": "",
+                "type": "query",
+                "description": "Cursor for pagination - the id to start after."
+              },
+              {
+                "name": "dateCreatedAfter",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "dateCreatedBefore",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Search registrants"
+        },
+        {
+          "info": {
+            "name": "View registrant",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.webconnex.com/v2/public/search/registrants/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              }
+            ]
+          },
+          "docs": "View registrant"
+        },
+        {
+          "info": {
+            "name": "Check-in registrant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.webconnex.com/v2/public/registrant/check-in",
+            "params": [
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check-in registrant"
+        },
+        {
+          "info": {
+            "name": "Check-out registrant",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.webconnex.com/v2/public/registrant/check-out",
+            "params": [
+              {
+                "name": "product",
+                "value": "",
+                "type": "query",
+                "description": "Webconnex product to scope the request to. Use ticketspice for TicketSpice."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check-out registrant"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
