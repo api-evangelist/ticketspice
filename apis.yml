@@ -30,6 +30,13 @@ image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/ticketspic
 tags:
 - Event Ticketing
 - Ticketing
+- Event
+- Registration
+- Payments
+- Webconnex
+tags_raw:
+- Event Ticketing
+- Ticketing
 - Events
 - Registration
 - Payments
@@ -108,6 +115,8 @@ apis:
   humanURL: https://docs.webconnex.io/api/v2/
   baseURL: https://api.webconnex.com/v2/public
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -140,6 +149,8 @@ apis:
   humanURL: https://docs.webconnex.io/api/v2/
   baseURL: https://api.webconnex.com/v2/public
   tags:
+  - Subscription
+  tags_raw:
   - Subscriptions
   properties:
   - type: OpenAPI
@@ -172,6 +183,8 @@ apis:
   humanURL: https://docs.webconnex.io/api/v2/
   baseURL: https://api.webconnex.com/v2/public
   tags:
+  - Transaction
+  tags_raw:
   - Transactions
   properties:
   - type: OpenAPI
@@ -188,6 +201,8 @@ apis:
   humanURL: https://docs.webconnex.io/api/v2/
   baseURL: https://api.webconnex.com/v2/public
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
