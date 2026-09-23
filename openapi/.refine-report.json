@@ -1,16 +1,7 @@
 {
   "provider": "ticketspice",
   "sources": [
-    "ticketspice-coupons-api-openapi.yml",
-    "ticketspice-customers-api-openapi.yml",
-    "ticketspice-forms-api-openapi.yml",
-    "ticketspice-health-api-openapi.yml",
-    "ticketspice-orders-api-openapi.yml",
-    "ticketspice-registrants-api-openapi.yml",
-    "ticketspice-subscriptions-api-openapi.yml",
-    "ticketspice-tickets-api-openapi.yml",
-    "ticketspice-transactions-api-openapi.yml",
-    "ticketspice-webhooks-api-openapi.yml"
+    "_original/ticketspice-openapi.yml"
   ],
   "outputs": [
     "ticketspice-coupons-api-openapi.yml",
@@ -27,6 +18,21 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "ticketspice-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "ticketspice-coupons-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ticketspice-customers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ticketspice-forms-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ticketspice-health-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ticketspice-orders-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ticketspice-registrants-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ticketspice-subscriptions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ticketspice-tickets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ticketspice-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "ticketspice-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

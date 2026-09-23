@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: TicketSpice API (Webconnex v2 Public) Coupons API
   version: '2.0'
-  description: OpenAPI description of the TicketSpice programmable surface, which is the shared Webconnex v2 Public REST API (base https://api.webconnex.com/v2/public). TicketSpice is one of several Webconnex products (alongside RegFox, RedPodium, and GivingFuel) that share this API; the TicketSpice product is selected with a product=ticketspice query parameter and requests authenticate with an apiKey request header. Paths and methods are transcribed from the public Webconnex v2 reference and are real; a provisioned account API key (available on higher-tier plans) is required to exercise them. Request and response bodies are modeled at a summary level from the reference JSON envelope and are illustrative where the full field-level schema is not published.
+  description: OpenAPI description of the TicketSpice programmable surface, which is the shared Webconnex v2 Public REST API (base https://api.webconnex.com/v2/public).
   contact:
     name: API Evangelist
     email: kin@apievangelist.com
@@ -128,6 +128,37 @@ paths:
               schema:
                 $ref: '#/components/schemas/Envelope'
 components:
+  parameters:
+    startingAfter:
+      name: startingAfter
+      in: query
+      required: false
+      description: Cursor for pagination - the id to start after.
+      schema:
+        type: string
+    product:
+      name: product
+      in: query
+      required: true
+      description: Webconnex product to scope the request to. Use ticketspice for TicketSpice.
+      schema:
+        type: string
+        default: ticketspice
+        example: ticketspice
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Page size. Default 50.
+      schema:
+        type: integer
+        default: 50
+    couponID:
+      name: couponID
+      in: path
+      required: true
+      schema:
+        type: string
   schemas:
     Coupon:
       type: object
@@ -170,37 +201,6 @@ components:
           type: integer
         hasMore:
           type: boolean
-  parameters:
-    product:
-      name: product
-      in: query
-      required: true
-      description: Webconnex product to scope the request to. Use ticketspice for TicketSpice.
-      schema:
-        type: string
-        default: ticketspice
-        example: ticketspice
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: Page size. Default 50.
-      schema:
-        type: integer
-        default: 50
-    couponID:
-      name: couponID
-      in: path
-      required: true
-      schema:
-        type: string
-    startingAfter:
-      name: startingAfter
-      in: query
-      required: false
-      description: Cursor for pagination - the id to start after.
-      schema:
-        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

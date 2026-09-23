@@ -1,8 +1,8 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: TicketSpice API (Webconnex v2 Public) Coupons Registrants API
+  title: TicketSpice API (Webconnex v2 Public) Registrants API
   version: '2.0'
-  description: OpenAPI description of the TicketSpice programmable surface, which is the shared Webconnex v2 Public REST API (base https://api.webconnex.com/v2/public). TicketSpice is one of several Webconnex products (alongside RegFox, RedPodium, and GivingFuel) that share this API; the TicketSpice product is selected with a product=ticketspice query parameter and requests authenticate with an apiKey request header. Paths and methods are transcribed from the public Webconnex v2 reference and are real; a provisioned account API key (available on higher-tier plans) is required to exercise them. Request and response bodies are modeled at a summary level from the reference JSON envelope and are illustrative where the full field-level schema is not published.
+  description: OpenAPI description of the TicketSpice programmable surface, which is the shared Webconnex v2 Public REST API (base https://api.webconnex.com/v2/public).
   contact:
     name: API Evangelist
     email: kin@apievangelist.com
@@ -98,6 +98,19 @@ paths:
                 $ref: '#/components/schemas/Envelope'
 components:
   parameters:
+    pathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    startingAfter:
+      name: startingAfter
+      in: query
+      required: false
+      description: Cursor for pagination - the id to start after.
+      schema:
+        type: string
     formId:
       name: formId
       in: query
@@ -105,13 +118,6 @@ components:
       description: Filter results to a single form (event page).
       schema:
         type: string
-    dateCreatedAfter:
-      name: dateCreatedAfter
-      in: query
-      required: false
-      schema:
-        type: string
-        format: date-time
     product:
       name: product
       in: query
@@ -121,31 +127,17 @@ components:
         type: string
         default: ticketspice
         example: ticketspice
-    pathId:
-      name: id
-      in: path
-      required: true
+    dateCreatedAfter:
+      name: dateCreatedAfter
+      in: query
+      required: false
       schema:
         type: string
+        format: date-time
     status:
       name: status
       in: query
       required: false
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: Page size. Default 50.
-      schema:
-        type: integer
-        default: 50
-    startingAfter:
-      name: startingAfter
-      in: query
-      required: false
-      description: Cursor for pagination - the id to start after.
       schema:
         type: string
     dateCreatedBefore:
@@ -155,7 +147,21 @@ components:
       schema:
         type: string
         format: date-time
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Page size. Default 50.
+      schema:
+        type: integer
+        default: 50
   schemas:
+    CheckInRequest:
+      type: object
+      description: Illustrative body for registrant check-in/check-out.
+      properties:
+        registrantId:
+          type: string
     Envelope:
       type: object
       description: Standard Webconnex response envelope wrapping a single object.
@@ -165,12 +171,6 @@ components:
           example: 200
         data:
           type: object
-    CheckInRequest:
-      type: object
-      description: Illustrative body for registrant check-in/check-out.
-      properties:
-        registrantId:
-          type: string
     ListEnvelope:
       type: object
       description: Standard Webconnex response envelope wrapping a page of objects.
