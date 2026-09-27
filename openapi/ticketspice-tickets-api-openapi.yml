@@ -54,12 +54,15 @@ paths:
                 $ref: '#/components/schemas/Envelope'
 components:
   parameters:
-    pathId:
-      name: id
-      in: path
+    product:
+      name: product
+      in: query
       required: true
+      description: Webconnex product to scope the request to. Use ticketspice for TicketSpice.
       schema:
         type: string
+        default: ticketspice
+        example: ticketspice
     startingAfter:
       name: startingAfter
       in: query
@@ -74,21 +77,6 @@ components:
       description: Filter results to a single form (event page).
       schema:
         type: string
-    product:
-      name: product
-      in: query
-      required: true
-      description: Webconnex product to scope the request to. Use ticketspice for TicketSpice.
-      schema:
-        type: string
-        default: ticketspice
-        example: ticketspice
-    status:
-      name: status
-      in: query
-      required: false
-      schema:
-        type: string
     limit:
       name: limit
       in: query
@@ -97,6 +85,18 @@ components:
       schema:
         type: integer
         default: 50
+    pathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    status:
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
   schemas:
     Envelope:
       type: object

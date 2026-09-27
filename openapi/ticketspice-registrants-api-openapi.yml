@@ -97,64 +97,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Envelope'
 components:
-  parameters:
-    pathId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    startingAfter:
-      name: startingAfter
-      in: query
-      required: false
-      description: Cursor for pagination - the id to start after.
-      schema:
-        type: string
-    formId:
-      name: formId
-      in: query
-      required: false
-      description: Filter results to a single form (event page).
-      schema:
-        type: string
-    product:
-      name: product
-      in: query
-      required: true
-      description: Webconnex product to scope the request to. Use ticketspice for TicketSpice.
-      schema:
-        type: string
-        default: ticketspice
-        example: ticketspice
-    dateCreatedAfter:
-      name: dateCreatedAfter
-      in: query
-      required: false
-      schema:
-        type: string
-        format: date-time
-    status:
-      name: status
-      in: query
-      required: false
-      schema:
-        type: string
-    dateCreatedBefore:
-      name: dateCreatedBefore
-      in: query
-      required: false
-      schema:
-        type: string
-        format: date-time
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: Page size. Default 50.
-      schema:
-        type: integer
-        default: 50
   schemas:
     CheckInRequest:
       type: object
@@ -186,6 +128,64 @@ components:
           type: integer
         hasMore:
           type: boolean
+  parameters:
+    product:
+      name: product
+      in: query
+      required: true
+      description: Webconnex product to scope the request to. Use ticketspice for TicketSpice.
+      schema:
+        type: string
+        default: ticketspice
+        example: ticketspice
+    startingAfter:
+      name: startingAfter
+      in: query
+      required: false
+      description: Cursor for pagination - the id to start after.
+      schema:
+        type: string
+    formId:
+      name: formId
+      in: query
+      required: false
+      description: Filter results to a single form (event page).
+      schema:
+        type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Page size. Default 50.
+      schema:
+        type: integer
+        default: 50
+    dateCreatedAfter:
+      name: dateCreatedAfter
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date-time
+    status:
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
+    pathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    dateCreatedBefore:
+      name: dateCreatedBefore
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date-time
   securitySchemes:
     apiKeyAuth:
       type: apiKey

@@ -129,13 +129,6 @@ paths:
                 $ref: '#/components/schemas/Envelope'
 components:
   parameters:
-    startingAfter:
-      name: startingAfter
-      in: query
-      required: false
-      description: Cursor for pagination - the id to start after.
-      schema:
-        type: string
     product:
       name: product
       in: query
@@ -145,6 +138,13 @@ components:
         type: string
         default: ticketspice
         example: ticketspice
+    startingAfter:
+      name: startingAfter
+      in: query
+      required: false
+      description: Cursor for pagination - the id to start after.
+      schema:
+        type: string
     limit:
       name: limit
       in: query

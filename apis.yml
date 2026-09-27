@@ -180,6 +180,8 @@ apis:
   humanURL: https://docs.webconnex.io/api/v2/
   baseURL: https://api.webconnex.com/v2/public
   tags:
+  - Ticketing
+  tags_raw:
   - Tickets
   properties:
   - type: OpenAPI
