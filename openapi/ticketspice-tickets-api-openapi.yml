@@ -63,13 +63,6 @@ components:
         type: string
         default: ticketspice
         example: ticketspice
-    startingAfter:
-      name: startingAfter
-      in: query
-      required: false
-      description: Cursor for pagination - the id to start after.
-      schema:
-        type: string
     formId:
       name: formId
       in: query
@@ -77,14 +70,13 @@ components:
       description: Filter results to a single form (event page).
       schema:
         type: string
-    limit:
-      name: limit
+    startingAfter:
+      name: startingAfter
       in: query
       required: false
-      description: Page size. Default 50.
+      description: Cursor for pagination - the id to start after.
       schema:
-        type: integer
-        default: 50
+        type: string
     pathId:
       name: id
       in: path
@@ -97,6 +89,14 @@ components:
       required: false
       schema:
         type: string
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Page size. Default 50.
+      schema:
+        type: integer
+        default: 50
   schemas:
     Envelope:
       type: object

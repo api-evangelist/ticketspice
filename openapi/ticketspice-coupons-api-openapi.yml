@@ -145,6 +145,12 @@ components:
       description: Cursor for pagination - the id to start after.
       schema:
         type: string
+    couponID:
+      name: couponID
+      in: path
+      required: true
+      schema:
+        type: string
     limit:
       name: limit
       in: query
@@ -153,13 +159,22 @@ components:
       schema:
         type: integer
         default: 50
-    couponID:
-      name: couponID
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
+    ListEnvelope:
+      type: object
+      description: Standard Webconnex response envelope wrapping a page of objects.
+      properties:
+        responseCode:
+          type: integer
+          example: 200
+        data:
+          type: array
+          items:
+            type: object
+        totalResults:
+          type: integer
+        hasMore:
+          type: boolean
     Coupon:
       type: object
       description: Illustrative coupon object (field set summarized from the reference).
@@ -186,21 +201,6 @@ components:
           example: 200
         data:
           type: object
-    ListEnvelope:
-      type: object
-      description: Standard Webconnex response envelope wrapping a page of objects.
-      properties:
-        responseCode:
-          type: integer
-          example: 200
-        data:
-          type: array
-          items:
-            type: object
-        totalResults:
-          type: integer
-        hasMore:
-          type: boolean
   securitySchemes:
     apiKeyAuth:
       type: apiKey

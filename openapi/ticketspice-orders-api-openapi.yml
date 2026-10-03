@@ -67,18 +67,18 @@ components:
         type: string
         default: ticketspice
         example: ticketspice
-    startingAfter:
-      name: startingAfter
-      in: query
-      required: false
-      description: Cursor for pagination - the id to start after.
-      schema:
-        type: string
     formId:
       name: formId
       in: query
       required: false
       description: Filter results to a single form (event page).
+      schema:
+        type: string
+    startingAfter:
+      name: startingAfter
+      in: query
+      required: false
+      description: Cursor for pagination - the id to start after.
       schema:
         type: string
     expand:
@@ -88,14 +88,19 @@ components:
       description: Comma-separated related objects to expand (registrants, tickets, subscription, inventory).
       schema:
         type: string
-    limit:
-      name: limit
+    dateCreatedBefore:
+      name: dateCreatedBefore
       in: query
       required: false
-      description: Page size. Default 50.
       schema:
-        type: integer
-        default: 50
+        type: string
+        format: date-time
+    pathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
     dateCreatedAfter:
       name: dateCreatedAfter
       in: query
@@ -109,19 +114,14 @@ components:
       required: false
       schema:
         type: string
-    pathId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    dateCreatedBefore:
-      name: dateCreatedBefore
+    limit:
+      name: limit
       in: query
       required: false
+      description: Page size. Default 50.
       schema:
-        type: string
-        format: date-time
+        type: integer
+        default: 50
   schemas:
     Envelope:
       type: object

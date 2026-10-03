@@ -90,6 +90,12 @@ components:
       description: Cursor for pagination - the id to start after.
       schema:
         type: string
+    pathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
     limit:
       name: limit
       in: query
@@ -98,22 +104,7 @@ components:
       schema:
         type: integer
         default: 50
-    pathId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
-    Envelope:
-      type: object
-      description: Standard Webconnex response envelope wrapping a single object.
-      properties:
-        responseCode:
-          type: integer
-          example: 200
-        data:
-          type: object
     ListEnvelope:
       type: object
       description: Standard Webconnex response envelope wrapping a page of objects.
@@ -129,6 +120,15 @@ components:
           type: integer
         hasMore:
           type: boolean
+    Envelope:
+      type: object
+      description: Standard Webconnex response envelope wrapping a single object.
+      properties:
+        responseCode:
+          type: integer
+          example: 200
+        data:
+          type: object
   securitySchemes:
     apiKeyAuth:
       type: apiKey
