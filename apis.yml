@@ -229,6 +229,9 @@ apis:
   - type: Documentation
     url: https://help.ticketspice.com/en/articles/2471509-webhooks
 common:
+- type: CapabilityMap
+  url: capabilities/ticketspice-capability-edges.yml
+  name: TicketSpice Business Capability Map
 - type: AgenticAccess
   url: agentic-access/ticketspice-agentic-access.yml
 - type: DomainSecurity
