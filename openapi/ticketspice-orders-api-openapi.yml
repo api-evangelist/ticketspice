@@ -58,60 +58,10 @@ paths:
                 $ref: '#/components/schemas/Envelope'
 components:
   parameters:
-    product:
-      name: product
-      in: query
-      required: true
-      description: Webconnex product to scope the request to. Use ticketspice for TicketSpice.
-      schema:
-        type: string
-        default: ticketspice
-        example: ticketspice
-    formId:
-      name: formId
-      in: query
-      required: false
-      description: Filter results to a single form (event page).
-      schema:
-        type: string
-    startingAfter:
-      name: startingAfter
-      in: query
-      required: false
-      description: Cursor for pagination - the id to start after.
-      schema:
-        type: string
-    expand:
-      name: expand
-      in: query
-      required: false
-      description: Comma-separated related objects to expand (registrants, tickets, subscription, inventory).
-      schema:
-        type: string
-    dateCreatedBefore:
-      name: dateCreatedBefore
-      in: query
-      required: false
-      schema:
-        type: string
-        format: date-time
     pathId:
       name: id
       in: path
       required: true
-      schema:
-        type: string
-    dateCreatedAfter:
-      name: dateCreatedAfter
-      in: query
-      required: false
-      schema:
-        type: string
-        format: date-time
-    status:
-      name: status
-      in: query
-      required: false
       schema:
         type: string
     limit:
@@ -122,16 +72,57 @@ components:
       schema:
         type: integer
         default: 50
+    expand:
+      name: expand
+      in: query
+      required: false
+      description: Comma-separated related objects to expand (registrants, tickets, subscription, inventory).
+      schema:
+        type: string
+    status:
+      name: status
+      in: query
+      required: false
+      schema:
+        type: string
+    dateCreatedAfter:
+      name: dateCreatedAfter
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date-time
+    startingAfter:
+      name: startingAfter
+      in: query
+      required: false
+      description: Cursor for pagination - the id to start after.
+      schema:
+        type: string
+    formId:
+      name: formId
+      in: query
+      required: false
+      description: Filter results to a single form (event page).
+      schema:
+        type: string
+    product:
+      name: product
+      in: query
+      required: true
+      description: Webconnex product to scope the request to. Use ticketspice for TicketSpice.
+      schema:
+        type: string
+        default: ticketspice
+        example: ticketspice
+    dateCreatedBefore:
+      name: dateCreatedBefore
+      in: query
+      required: false
+      schema:
+        type: string
+        format: date-time
   schemas:
-    Envelope:
-      type: object
-      description: Standard Webconnex response envelope wrapping a single object.
-      properties:
-        responseCode:
-          type: integer
-          example: 200
-        data:
-          type: object
     ListEnvelope:
       type: object
       description: Standard Webconnex response envelope wrapping a page of objects.
@@ -147,6 +138,15 @@ components:
           type: integer
         hasMore:
           type: boolean
+    Envelope:
+      type: object
+      description: Standard Webconnex response envelope wrapping a single object.
+      properties:
+        responseCode:
+          type: integer
+          example: 200
+        data:
+          type: object
   securitySchemes:
     apiKeyAuth:
       type: apiKey

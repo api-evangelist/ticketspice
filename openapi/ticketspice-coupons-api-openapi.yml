@@ -129,6 +129,21 @@ paths:
                 $ref: '#/components/schemas/Envelope'
 components:
   parameters:
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Page size. Default 50.
+      schema:
+        type: integer
+        default: 50
+    startingAfter:
+      name: startingAfter
+      in: query
+      required: false
+      description: Cursor for pagination - the id to start after.
+      schema:
+        type: string
     product:
       name: product
       in: query
@@ -138,27 +153,12 @@ components:
         type: string
         default: ticketspice
         example: ticketspice
-    startingAfter:
-      name: startingAfter
-      in: query
-      required: false
-      description: Cursor for pagination - the id to start after.
-      schema:
-        type: string
     couponID:
       name: couponID
       in: path
       required: true
       schema:
         type: string
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: Page size. Default 50.
-      schema:
-        type: integer
-        default: 50
   schemas:
     ListEnvelope:
       type: object
@@ -175,6 +175,15 @@ components:
           type: integer
         hasMore:
           type: boolean
+    Envelope:
+      type: object
+      description: Standard Webconnex response envelope wrapping a single object.
+      properties:
+        responseCode:
+          type: integer
+          example: 200
+        data:
+          type: object
     Coupon:
       type: object
       description: Illustrative coupon object (field set summarized from the reference).
@@ -192,15 +201,6 @@ components:
           type: number
         active:
           type: boolean
-    Envelope:
-      type: object
-      description: Standard Webconnex response envelope wrapping a single object.
-      properties:
-        responseCode:
-          type: integer
-          example: 200
-        data:
-          type: object
   securitySchemes:
     apiKeyAuth:
       type: apiKey

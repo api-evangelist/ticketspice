@@ -168,6 +168,12 @@ paths:
                 $ref: '#/components/schemas/Envelope'
 components:
   parameters:
+    pathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
     product:
       name: product
       in: query
@@ -177,12 +183,6 @@ components:
         type: string
         default: ticketspice
         example: ticketspice
-    pathId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
   schemas:
     ListEnvelope:
       type: object
@@ -199,6 +199,15 @@ components:
           type: integer
         hasMore:
           type: boolean
+    Envelope:
+      type: object
+      description: Standard Webconnex response envelope wrapping a single object.
+      properties:
+        responseCode:
+          type: integer
+          example: 200
+        data:
+          type: object
     Webhook:
       type: object
       description: Illustrative webhook subscription object.
@@ -212,15 +221,6 @@ components:
           type: string
         active:
           type: boolean
-    Envelope:
-      type: object
-      description: Standard Webconnex response envelope wrapping a single object.
-      properties:
-        responseCode:
-          type: integer
-          example: 200
-        data:
-          type: object
   securitySchemes:
     apiKeyAuth:
       type: apiKey
