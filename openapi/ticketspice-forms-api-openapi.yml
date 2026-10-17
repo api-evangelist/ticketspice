@@ -73,37 +73,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Envelope'
 components:
-  parameters:
-    pathId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    limit:
-      name: limit
-      in: query
-      required: false
-      description: Page size. Default 50.
-      schema:
-        type: integer
-        default: 50
-    startingAfter:
-      name: startingAfter
-      in: query
-      required: false
-      description: Cursor for pagination - the id to start after.
-      schema:
-        type: string
-    product:
-      name: product
-      in: query
-      required: true
-      description: Webconnex product to scope the request to. Use ticketspice for TicketSpice.
-      schema:
-        type: string
-        default: ticketspice
-        example: ticketspice
   schemas:
     ListEnvelope:
       type: object
@@ -129,6 +98,37 @@ components:
           example: 200
         data:
           type: object
+  parameters:
+    product:
+      name: product
+      in: query
+      required: true
+      description: Webconnex product to scope the request to. Use ticketspice for TicketSpice.
+      schema:
+        type: string
+        default: ticketspice
+        example: ticketspice
+    limit:
+      name: limit
+      in: query
+      required: false
+      description: Page size. Default 50.
+      schema:
+        type: integer
+        default: 50
+    pathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
+    startingAfter:
+      name: startingAfter
+      in: query
+      required: false
+      description: Cursor for pagination - the id to start after.
+      schema:
+        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey

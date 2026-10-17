@@ -167,22 +167,6 @@ paths:
               schema:
                 $ref: '#/components/schemas/Envelope'
 components:
-  parameters:
-    pathId:
-      name: id
-      in: path
-      required: true
-      schema:
-        type: string
-    product:
-      name: product
-      in: query
-      required: true
-      description: Webconnex product to scope the request to. Use ticketspice for TicketSpice.
-      schema:
-        type: string
-        default: ticketspice
-        example: ticketspice
   schemas:
     ListEnvelope:
       type: object
@@ -221,6 +205,22 @@ components:
           type: string
         active:
           type: boolean
+  parameters:
+    product:
+      name: product
+      in: query
+      required: true
+      description: Webconnex product to scope the request to. Use ticketspice for TicketSpice.
+      schema:
+        type: string
+        default: ticketspice
+        example: ticketspice
+    pathId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: string
   securitySchemes:
     apiKeyAuth:
       type: apiKey
