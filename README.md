@@ -1,4 +1,4 @@
-# TicketSpice (ticketspice)
+# TicketSpice
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,93 +64,136 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-TicketSpice is an online event ticketing platform built by [Webconnex](https://www.webconnex.com) that lets organizers design fully customizable ticketing pages and sell tickets for events, festivals, tours, and immersive experiences at a flat 99-cent per-ticket fee. TicketSpice is one of several Webconnex products (alongside RegFox, RedPodium, and GivingFuel) that share a single REST API.
+TicketSpice is an online event ticketing platform built by Webconnex that lets organizers design fully customizable ticketing pages and sell tickets for events, festivals, tours, and immersive experiences at a flat 99-cent per-ticket fee. TicketSpice is powered by the shared Webconnex REST API (base https://api.webconnex.com/v2/public), the same read-and-manage API surface behind Webconnex products RegFox, RedPodium, and GivingFuel. Callers pass a product parameter of ticketspice and authenticate with an apiKey header to search and view orders, registrants, tickets, transactions, customers, forms, and inventory, manage coupons and webhooks, and check registrants in and out. API access is provisioned per account with an API key and is gated to higher-tier plans.
 
-TicketSpice's programmable surface is the **shared Webconnex v2 Public REST API** (base `https://api.webconnex.com/v2/public`). Callers select the TicketSpice product with a `product=ticketspice` query parameter and authenticate with an `apiKey` request header. The API is request/response REST over HTTPS: GET search-and-view endpoints for orders, registrants, tickets, subscriptions, transactions, customers, forms, and inventory; write operations for coupons and webhooks; and registrant check-in/check-out. The only push mechanism is outbound webhooks (HTTP callbacks) - there is no public WebSocket API.
+**Areas:** Event Ticketing · Ticketing · Event · Registration · Payments · Webconnex
 
-**Access model:** The API is real and documented at [docs.webconnex.io/api/v2](https://docs.webconnex.io/api/v2/), but access is provisioned per account. An organizer generates an API key from the dashboard, and API access is gated to higher-tier plans (RegFox documents this as Premium/Professional; TicketSpice documents API access on Enterprise-tier packages). The endpoints below are transcribed from the public reference and are real; a live account and key are required to exercise them.
+## TicketSpice on APIs.io
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/ticketspice/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/ticketspice/refs/heads/main/apis.yml)
+Everything profiled for TicketSpice is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/ticketspice/](https://apis.io/providers/ticketspice/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (10)
 
-- Event Ticketing
-- Ticketing
-- Events
-- Registration
-- Payments
-- Webconnex
+- [TicketSpice Coupons API](https://apis.io/apis/ticketspice/ticketspice-coupons-api/) — The Coupons API from TicketSpice — 4 operation(s) for coupons.
+- [TicketSpice Customers API](https://apis.io/apis/ticketspice/ticketspice-customers-api/) — The Customers API from TicketSpice — 2 operation(s) for customers.
+- [TicketSpice Forms API](https://apis.io/apis/ticketspice/ticketspice-forms-api/) — The Forms API from TicketSpice — 3 operation(s) for forms.
+- [TicketSpice Health API](https://apis.io/apis/ticketspice/ticketspice-health-api/) — The Health API from TicketSpice — 1 operation(s) for health.
+- [TicketSpice Orders API](https://apis.io/apis/ticketspice/ticketspice-orders-api/) — The Orders API from TicketSpice — 2 operation(s) for orders.
+- [TicketSpice Registrants API](https://apis.io/apis/ticketspice/ticketspice-registrants-api/) — The Registrants API from TicketSpice — 4 operation(s) for registrants.
+- [TicketSpice Subscriptions API](https://apis.io/apis/ticketspice/ticketspice-subscriptions-api/) — The Subscriptions API from TicketSpice — 2 operation(s) for subscriptions.
+- [TicketSpice Tickets API](https://apis.io/apis/ticketspice/ticketspice-tickets-api/) — The Tickets API from TicketSpice — 2 operation(s) for tickets.
+- [TicketSpice Transactions API](https://apis.io/apis/ticketspice/ticketspice-transactions-api/) — The Transactions API from TicketSpice — 2 operation(s) for transactions.
+- [TicketSpice Webhooks API](https://apis.io/apis/ticketspice/ticketspice-webhooks-api/) — The Webhooks API from TicketSpice — 5 operation(s) for webhooks.
 
-## Timestamps
+### Published properties
 
-- **Created:** 2026-07-05
-- **Modified:** 2026-07-05
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-All APIs share the base URL `https://api.webconnex.com/v2/public`, the `apiKey` header, and the `product=ticketspice` parameter.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-### TicketSpice Forms and Inventory API
+- [Ticketspice Agentic Access](https://apis.io/agentic-access/ticketspice/ticketspice-agentic-access/)
 
-List and view the ticketing forms (event pages) in a TicketSpice account and read their remaining ticket and product inventory.
+#### Collections (11)
 
-- **Human URL:** [https://docs.webconnex.io/api/v2/](https://docs.webconnex.io/api/v2/)
-- **Base URL:** `https://api.webconnex.com/v2/public`
+Postman and Open Collection request collections.
 
-### TicketSpice Orders and Registrants API
+- [TicketSpice API (Webconnex v2 Public)](https://apis.io/collections/ticketspice/open-ticketspice/)
+- [TicketSpice API (Webconnex v2 Public) Coupons API](https://apis.io/collections/ticketspice/open-ticketspice-coupons-api/)
+- [TicketSpice API (Webconnex v2 Public) Coupons Customers API](https://apis.io/collections/ticketspice/open-ticketspice-customers-api/)
+- [TicketSpice API (Webconnex v2 Public) Coupons Forms API](https://apis.io/collections/ticketspice/open-ticketspice-forms-api/)
+- [TicketSpice API (Webconnex v2 Public) Coupons Health API](https://apis.io/collections/ticketspice/open-ticketspice-health-api/)
+- [TicketSpice API (Webconnex v2 Public) Coupons Orders API](https://apis.io/collections/ticketspice/open-ticketspice-orders-api/)
+- [TicketSpice API (Webconnex v2 Public) Coupons Registrants API](https://apis.io/collections/ticketspice/open-ticketspice-registrants-api/)
+- [TicketSpice API (Webconnex v2 Public) Coupons Subscriptions API](https://apis.io/collections/ticketspice/open-ticketspice-subscriptions-api/)
+- [TicketSpice API (Webconnex v2 Public) Coupons Tickets API](https://apis.io/collections/ticketspice/open-ticketspice-tickets-api/)
+- [TicketSpice API (Webconnex v2 Public) Coupons Transactions API](https://apis.io/collections/ticketspice/open-ticketspice-transactions-api/)
+- [TicketSpice API (Webconnex v2 Public) Coupons Webhooks API](https://apis.io/collections/ticketspice/open-ticketspice-webhooks-api/)
 
-Search and view ticket orders and the registrants (ticket buyers/attendees) within them, and check registrants in or out at the door.
+#### Security (2)
 
-- **Human URL:** [https://docs.webconnex.io/api/v2/](https://docs.webconnex.io/api/v2/)
-- **Base URL:** `https://api.webconnex.com/v2/public`
+Authentication, trust centre, and vulnerability disclosure.
 
-### TicketSpice Tickets API
+- [Ticketspice Authentication](https://apis.io/security/ticketspice/ticketspice-authentication/)
+- [Ticketspice Domain Security](https://apis.io/security/ticketspice/ticketspice-domain-security/)
 
-Search and view individual issued tickets across a TicketSpice account.
+#### Plans and pricing (1)
 
-- **Human URL:** [https://docs.webconnex.io/api/v2/](https://docs.webconnex.io/api/v2/)
-- **Base URL:** `https://api.webconnex.com/v2/public`
+Published plans, tiers and prices.
 
-### TicketSpice Transactions and Customers API
+- [Ticketspice Plans Pricing](https://apis.io/plans/ticketspice/ticketspice-plans-pricing/)
 
-Search and view financial transactions (payments, refunds) and the customer records tied to them.
+#### Rate limits (1)
 
-- **Human URL:** [https://docs.webconnex.io/api/v2/](https://docs.webconnex.io/api/v2/)
-- **Base URL:** `https://api.webconnex.com/v2/public`
+Published request limits.
 
-### TicketSpice Coupons API
+- [Ticketspice Rate Limits](https://apis.io/rate-limits/ticketspice/ticketspice-rate-limits/)
 
-Full read-write management of discount coupons - list global or per-form coupons and create, view, update, and delete individual coupons.
+#### FinOps (1)
 
-- **Human URL:** [https://docs.webconnex.io/api/v2/](https://docs.webconnex.io/api/v2/)
-- **Base URL:** `https://api.webconnex.com/v2/public`
+What the API costs to run, by operation.
 
-### TicketSpice Webhooks API
+- [Ticketspice Finops](https://apis.io/finops/ticketspice/ticketspice-finops/)
 
-Programmatically manage outbound webhooks - create, list, view, update, and delete subscriptions, inspect delivery logs, and resend a prior delivery. Webhooks fire on events such as new registration, subscription/deposit processed, form publish, inventory thresholds, and coupon changes.
+## Where to find this API
 
-- **Human URL:** [https://help.ticketspice.com/en/articles/2471509-webhooks](https://help.ticketspice.com/en/articles/2471509-webhooks)
-- **Base URL:** `https://api.webconnex.com/v2/public`
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
-## Pricing
-
-TicketSpice charges a flat **$0.99 per paid ticket** ($5+), **$0.49** for paid tickets under $5 or box-office card sales, no fee for cash box-office sales, and $0.99 per free-event ticket (waived with prior paid-event history). Card processing is **2.9% + $0.30** via Webconnex Payments, or a **1%** platform fee plus the processor's own fees for a custom processor. No setup fees, monthly fees, or contracts. See [plans/ticketspice-plans-pricing.yml](plans/ticketspice-plans-pricing.yml).
-
-## Rate Limits
-
-The shared Webconnex API enforces per-account limits: **10,000 requests/day** (reset 00:00 UTC) and **900 requests per 15-minute** burst window, with remaining capacity in `X-Daily-Remaining` / `X-Burst-Remaining` headers and HTTP 429 on overage. Search endpoints page with a `startingAfter` cursor and `limit` (default 50). See [rate-limits/ticketspice-rate-limits.yml](rate-limits/ticketspice-rate-limits.yml).
-
-## Common Properties
-
-- [GitHub Organization](https://github.com/webconnex)
-- [LinkedIn](https://www.linkedin.com/company/webconnex)
 - [Website](https://www.ticketspice.com)
 - [Documentation](https://docs.webconnex.io/api/v2/)
-- [Plans](plans/ticketspice-plans-pricing.yml)
-- [Rate Limits](rate-limits/ticketspice-rate-limits.yml)
-- [Fin Ops](finops/ticketspice-finops.yml)
+- [Blog](https://www.ticketspice.com/blog)
+- [GitHub](https://github.com/webconnex)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 25.6** — emerging · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 47.5 |
+| Contract governance | 0.0 |
+| Operational transparency | 10.5 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 7.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 10.7** — Payments
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/ticketspice/](https://apis.io/providers/ticketspice/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for TicketSpice: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/ticketspice/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
